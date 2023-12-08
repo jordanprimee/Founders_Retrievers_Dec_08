@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import Modal from "react-modal";
-import { Cancel } from "../../assets/icons/IconsSVGConst";
-Modal.setAppElement(document.getElementById("root"));
-
+import axios from "axios";
 /////////////JWT///////////////
 import { UseUser } from "../../hooks/useContext/UserContext";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
+
+import Modal from "react-modal";
+import { Cancel, Happy } from "../../assets/icons/IconsSVGConst";
+Modal.setAppElement(document.getElementById("root"));
 
 export const SuccessfullySignedIn = ({ isOpen, onRequestClose }) => {
   const modalStyle = {
@@ -28,32 +28,29 @@ export const SuccessfullySignedIn = ({ isOpen, onRequestClose }) => {
   });
 
   const { user } = UseUser();
-  const [cookies] = useCookies(['userToken']);
+  const [cookies] = useCookies(["userToken"]);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         if (user) {
           const token = cookies.userToken || null;
-          axios.defaults.headers.common['authorization'] = `${token}`;
+          axios.defaults.headers.common["authorization"] = `${token}`;
           const response = await axios.get(`http://localhost:3000/profile`);
           // console.log(response.data)
           setUserData(response.data[0]);
         }
-                   
-        } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
- 
-  };
-  fetchUserData();
-}, [user, cookies]);
-
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchUserData();
+  }, [user, cookies]);
 
   return (
     <>
       <Modal
-        className="absolute top-44 left-[30rem] flex flex-col align-center justify-center gap-8 p-12 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] "
+        className="absolute top-44 left-[30rem] flex flex-col align-center justify-center gap-4 p-8 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] "
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
@@ -63,24 +60,25 @@ export const SuccessfullySignedIn = ({ isOpen, onRequestClose }) => {
           <Cancel />
         </button>
         <div className="self-center">
-          <svg
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="20" cy="20" r="19.5" stroke="#18E074" />
-            <path
-              d="M11 21.5L15.0805 26.6933C15.8306 27.6481 17.2515 27.7196 18.0937 26.845L29.5 15"
-              stroke="#18E074"
-              stroke-width="3"
-              stroke-linecap="round"
-            />
-          </svg>
+          <Happy />
         </div>
-        <div className="text-[2rem] font-light text-[#fff] text-wrap text-center">
-          Welcome back {userData.username} !! 
+        <div className="text-[1.5rem] font-light text-[#ffffff95] text-wrap text-center">
+          Welcome back{" "}
+          <span className="text-[1.75rem] font-semibold text-[#fff] text-wrap text-center">
+            {userData.username}
+          </span>{" "}
+          !!
+        </div>
+        <div className="text-start flex flex-col items-center text-[1rem] font-light text-[#ffffff95] text-wrap">
+          <span className="self-start pl-28">where to today !!{" "}</span>
+          <div className="flex flex-row">
+            <div className="pl-24 self-start border-r border-dotted border-[#ffffff85] h-24"></div>
+            <ul >
+              <Link to='/'><li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-4 p-2">HOME PAGE</li></Link>
+              <Link to='/feedpage'><li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-4 p-2">FEED PAGE</li></Link>
+              <Link to='/profilepage'><li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-4 p-2">MY PROFILE</li></Link>
+            </ul>
+          </div>
         </div>
 
         {/* <button onClick={onRequestClose} className="self-center" >

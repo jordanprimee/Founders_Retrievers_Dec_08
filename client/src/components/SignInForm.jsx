@@ -7,6 +7,8 @@ import {useNavigate  } from "react-router-dom";
 ////JWT///////
 import { UseUser } from '../hooks/useContext/UserContext';
 import { useCookies } from 'react-cookie';
+import { SuccessfullySignedIn } from './responseModals/SuccessfullySignedIn';
+import { FailedToSignIn } from './responseModals/FailedToSignIn';
 
 
 
@@ -157,10 +159,10 @@ function SingIn()  {
   return (
     <>
      {successfullySignedInIsOpen && (
-        <SuccessfullyUpdated isOpen={openSuccessfullySignedIn} onRequestClose={closeModal} />
+        <SuccessfullySignedIn isOpen={openSuccessfullySignedIn} onRequestClose={closeModal} />
       )}
      {failedToSignInIsOpen && (
-        <FailedToUpdate  isOpen={openFailedToSignIn} onRequestClose={closeModal}/>
+        <FailedToSignIn  isOpen={openFailedToSignIn} onRequestClose={closeModal}/>
       )}
     <div style={FormDivStyle}>
     <div className='p-8 grid grid-col-3 justify-items-stretch  bg-[#373737] rounded-[2rem] w-[45rem] ' >
