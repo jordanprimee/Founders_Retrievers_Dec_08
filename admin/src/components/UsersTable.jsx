@@ -4,73 +4,62 @@ import axios from "axios";
 export const UsersTable = () => {
   const [userData, setUserData] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const usersResponse = await axios.get(
-  //         "http://localhost:3000/getAllUser"
-  //       );
-  //       setUserData(usersResponse.data);
-  //       console.log("userdata", usersResponse.data);
-
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   fetchUserData();
-  // }, []);
-
   // PAGINATION //
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [limitData, setLimitData] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const usersResponse = await axios.get(
-          "http://localhost:3000/endpoint/${currentPage}"
+          `http://localhost:3000/filter/users2?page=${currentPage}&limit&search=${searchQuery}`
         );
-        console.log("userdata", usersResponse.data);
-        const result = await usersResponse.json();
-        setUserData(result.data);
-        setTotalPages(result.totalPages);
+        setUserData(usersResponse.data.users);
+        const calculatedTotalPages = Math.ceil(usersResponse.data.total / usersResponse.data.limit);
+        setTotalPages(calculatedTotalPages);
+        setLimitData(usersResponse.data.limit);
+        console.log(usersResponse.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+  
     fetchUserData();
-  }, [currentPage]);
+  }, [currentPage, searchQuery]);
+  
+  
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-  // const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setCurrentPage(1); // Reset page when performing a new search
+    fetchUserData();
+  };
+
+  //////////////////////DELETE USER////////////
+ // const handleDeleteUser = (user_id) => {
+  //   // Make a request to delete the user
+  //   axios
+  //     .put(`http://localhost:3000/getAllUser/${id_user}`)
+  //     .then(() => {
+  //       console.log("Server response after deletion:", response);
+
+  //       setUserData((prevUserData) =>
+  //         prevUserData.filter((user) => user.id_user !== id_user)
+  //       );
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error deleting user ", error);
+  //     });
   // };
-
-    const handleSearchSubmit = (e) => {
-      e.preventDefault();
-      setCurrentPage(1); // Reset page when performing a new search
-      fetchData();
-    };
-
-
-    const handleDeleteUser = (user_id) => {
-      // Make a request to delete the user
-      axios
-        .put(`http://localhost:3000/getAllUser/${id_user}`)
-        .then(() => {
-          console.log("Server response after deletion:", response);
-
-          setUserData((prevUserData) =>
-            prevUserData.filter((user) => user.id_user !== id_user)
-          );
-        })
-        .catch((error) => {
-          console.error("Error deleting user ", error);
-        });
-    };
-
+ 
 
   return (
     <>
@@ -83,7 +72,7 @@ export const UsersTable = () => {
             name="search"
             placeholder="Search"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={handleSearchChange}
           />
           <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
             <svg
@@ -170,7 +159,7 @@ export const UsersTable = () => {
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           <button
-                            onClick={(e) => handleDeleteUser(item.user_id)}
+                            // onClick={(e) => handleDeleteUser(item.user_id)}
                             class="px-3 pb-2 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] text-xs px-5 py-2 "
                           >
                             Delete
@@ -201,21 +190,20 @@ export const UsersTable = () => {
               </a>
             </li>
 
-            {pages.map((page) => (
+            {Array.from({ length: totalPages }, (_, index) => (
               <li key={index} className="page-item">
                 <a
                   className={`page-link relative block py-1.5 px-3 rounded border-0 outline-none transition-all duration-300 text-gray-800 focus:shadow-none ${
                     currentPage === index + 1 ? "bg-gray-200" : ""
                   }`}
                   href="#"
-                  key={page}
-                  onClick={() => onPageChange(page)}
-                  disabled={page === currentPage}
+                  onClick={() => paginate(index + 1)}
                 >
-                  {page}{" "}
+                  {index + 1}
                 </a>
               </li>
             ))}
+
             <li className="page-item" onClick={() => paginate(currentPage + 1)}>
               <a
                 className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
@@ -230,3 +218,5 @@ export const UsersTable = () => {
     </>
   );
 };
+
+

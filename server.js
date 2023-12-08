@@ -25,7 +25,7 @@ const commentController = require('./controllers/commentControllers');
 const contactusControllers = require('./controllers/contactusControlletr');
 const ProfileControllers = require('./controllers/profileControllers');
 const allUserControllers = require('./controllers/allUserControllers');
-
+const userRoutes = require('./Route/alluserRoute');
 
 
 
@@ -39,6 +39,7 @@ const authenticateToken = require('./middleware/jwt'); // Adjust the path accord
 const profileController = require('./controllers/profileControllers');
 // const multer = require('./middleware/multer')
 // Routes
+app.use('/filter', userRoutes);
 app.post('/register', userController.registerUser);
 app.post('/login', userController.loginUser);
 app.get('/found', foundControllers.getAllProducts);
