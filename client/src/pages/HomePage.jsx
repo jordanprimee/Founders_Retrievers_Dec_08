@@ -27,15 +27,13 @@ export const HomePage = () => {
       <HomeHero />
       <hr className="my-6 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
 
-      <div className="p-4 grid auto-rows-auto	 justify-items-center gap-8	">
-        <div className="place-items-center text-2xl font-semibold">
+      <div className="flex flex-col gap-12">
+        <div className="text-center text-2xl font-semibold">
           Recently Lost and Found{" "}
         </div>
-        <div className="p-4 flex flex-row gap-8">
           <AutoplaySwiper />
-        </div>
         {user ? (
-          <div className="text-[0.85rem]">
+          <div className="text-center text-[0.85rem]">
             <Link
               to="/feedpage"
               className="text-[#E83434] hover:text-[#E8343485] justify-self-center place-items-center font-light underline decoration-solid "

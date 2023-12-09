@@ -49,7 +49,7 @@ function App() {
 
 
   return (
-    <div style={BgTexture}>
+    <div style={BgTexture }>
       <UserProvider  user={user}>
         <BrowserRouter>
           <ModalProvider>
