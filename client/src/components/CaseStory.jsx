@@ -89,7 +89,7 @@ export const CaseStory = () => {
 
   return (
 
-    <div className='max-w-screen-2xl m-0 overflow-hidden relative pb-24'>
+    <div className='max-w-screen-2xl overflow-hidden relative pb-24'>
 
       <Swiper {...swiperParams}>
       {Array.isArray(data.comments) && data.comments.map((item) => (
