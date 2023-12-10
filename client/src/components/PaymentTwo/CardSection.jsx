@@ -32,17 +32,19 @@ import { CardElement } from "@stripe/react-stripe-js";
 
 const CARD_ELEMENT_OPTIONS = {
   iconStyle: "solid",
-  hidePostalCode: false,
+  hidePostalCode: false,  
   style: {
     base: {
-      iconColor: "rgb(240, 57, 122)",
-      color: "rgb(240, 57, 122)",
+      iconColor: "#fff",
+      color: "#3e3e3e",
       fontSize: "16px",
       fontFamily: '"Open Sans", sans-serif',
       fontSmoothing: "antialiased",
       "::placeholder": {
-        color: "#CFD7DF"
-      }
+        color: "#ffffff75",
+      },
+      
+      
     },
     invalid: {
       color: "#e5424d",
@@ -54,6 +56,9 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 function CardSection() {
-  return <CardElement options={CARD_ELEMENT_OPTIONS} />;
+  return (
+    <CardElement options={CARD_ELEMENT_OPTIONS} />
+    
+  )
 }
 export default CardSection
