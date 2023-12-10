@@ -18,7 +18,7 @@ import { useModal } from "../../hooks/useContext/ModalContext";
 import { DeliveryAlertFound } from "../DeliveryAlertFound";
 Modal.setAppElement(document.getElementById("root"));
 
-export const ConfirmContact = ({  isOpen, onRequestClose }) => {
+export const ConfirmContact = ({ isOpen, onRequestClose }) => {
   const { modalIsOpen, openModal } = useModal();
 
   const [deliveryAlertIsOpen, setDeliveryAlertIsOpen] = useState(false);
@@ -54,11 +54,11 @@ export const ConfirmContact = ({  isOpen, onRequestClose }) => {
   const [error, setError] = useState("");
 
   ////JWT///////
-  const { user } = UseUser(); 
+  const { user } = UseUser();
   useEffect(() => {
     if (user) {
       axios
-        // .get(`http://localhost:3000/users/${user_id}`) 
+        // .get(`http://localhost:3000/users/${user_id}`)
         .then((response) => {
           setUserInfo(response.data);
         })
@@ -95,25 +95,32 @@ export const ConfirmContact = ({  isOpen, onRequestClose }) => {
   //////////////NEWWW//////////
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Create FormData object and append form fields
     const formDataToSend = new FormData();
     for (const key in formData) {
       // Skip appending imageurl to FormData here
-      if (key !== 'imageurl') {
+      if (key !== "imageurl") {
         formDataToSend.append(key, formData[key]);
       }
     }
-  
+
     try {
       // Append imageurl separately if it exists
       if (formData.imageurl) {
-        formDataToSend.append('image', formData.imageurl, formData.imageurl.name);
+        formDataToSend.append(
+          "image",
+          formData.imageurl,
+          formData.imageurl.name
+        );
       }
-  
+
       // End point
-      const response = await axios.post("http://localhost:3000/Founds", formData);
-  
+      const response = await axios.post(
+        "http://localhost:3000/Founds",
+        formData
+      );
+
       // Navigate or handle success as needed
       console.log("Form data sent successfully:", formData);
       navigate("/");
@@ -121,7 +128,6 @@ export const ConfirmContact = ({  isOpen, onRequestClose }) => {
       setError("Something went wrong");
     }
   };
-
 
   // Handle input change
   const handleChange = (e) => {
@@ -150,8 +156,7 @@ export const ConfirmContact = ({  isOpen, onRequestClose }) => {
           <Cancel />
         </button>
         <div className="self-center">
-          <AlertRed />{" "}
-          {userInfo.username}
+          <AlertRed /> {userInfo.username}
         </div>
         <div className="text-[1rem] font-light text-[#fff] text-wrap text-center">
           {" "}
@@ -205,16 +210,16 @@ export const ConfirmContact = ({  isOpen, onRequestClose }) => {
             />
           </label>
           <label htmlFor="">insert you id pic </label>
- <input  type="file"
-        id="profileImageInput"
-        accept="image/*"
-        className=""
-        // value={formData.imageurl}
-        onChange={handleFileChange}
-
-          />          {/* {" "}
+          <input
+            type="file"
+            id="profileImageInput"
+            accept="image/*"
+            className=""
+            // value={formData.imageurl}
+            onChange={handleFileChange}
+          />{" "}
+          {/* {" "}
              +962 70 0000 0000 <Copy />{" "} */}
-
           <button
             type="submit"
             className="mt-8 self-center text-center w-52 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
