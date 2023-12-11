@@ -107,8 +107,9 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
   const [index, setIndex] = useState(0);
   const indexRef = useRef(index);
   const delay = 2500; // Set your desired delay value in milliseconds
-
+  const [flag ,setFlag] = useState(true)
   useEffect(() => {
+    if(flag){
     const intervalId = setInterval(() => {
       setIndex((prevIndex) =>
         prevIndex === combinedData.length - 1 ? combinedData.length : prevIndex + 4
@@ -117,7 +118,7 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
 
     return () => {
       clearInterval(intervalId);
-    };
+    };}
   }, [combinedData.length, delay]);
 
   useEffect(() => {
@@ -162,6 +163,8 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
           <SwiperSlide
           
             style={{
+              // setFlag(true),
+              // hover: setFlag(false),
               width: "19rem", 
               transition: "transform linear 5s",
               transform: `translate3d(${-index * 25}%, 0, 0)`,

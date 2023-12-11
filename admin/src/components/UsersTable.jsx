@@ -10,24 +10,25 @@ export const UsersTable = () => {
   const [limitData, setLimitData] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const fetchUserData = async () => {
+    try {
+      const usersResponse = await axios.get(
+        `http://localhost:3000/filter/users2?page=${currentPage}&limit&search=${searchQuery}`
+      );
+      setUserData(usersResponse.data.users);
+      const calculatedTotalPages = Math.ceil(usersResponse.data.total / usersResponse.data.limit);
+      setTotalPages(calculatedTotalPages);
+      setLimitData(usersResponse.data.limit);
+      console.log(usersResponse.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const usersResponse = await axios.get(
-          `http://localhost:3000/filter/users2?page=${currentPage}&limit&search=${searchQuery}`
-        );
-        setUserData(usersResponse.data.users);
-        const calculatedTotalPages = Math.ceil(usersResponse.data.total / usersResponse.data.limit);
-        setTotalPages(calculatedTotalPages);
-        setLimitData(usersResponse.data.limit);
-        console.log(usersResponse.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-  
     fetchUserData();
   }, [currentPage, searchQuery]);
+  
   
   
   const paginate = (pageNumber) => {

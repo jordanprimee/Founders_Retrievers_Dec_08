@@ -21,8 +21,6 @@
 //   const handleSubmit = async event => {
 //     event.preventDefault();
 
-   
-
 //     // const { stripe, elements } = props;
 //     if (!stripe || !elements) {
 //       return;
@@ -33,14 +31,13 @@
 //         card: elements.getElement(CardElement),
 //       });
 
-
 //     const card = elements.getElement(CardElement);
 //     const result = await stripe.createToken(card);
 //     if (result.error) {
 //       console.log(result.error.message);
 //     } else {
 //       console.log(result.token);
-//     } 
+//     }
 // //handle amount
 //     const { id } = paymentMethod;
 //     const response = await axios.post("http://localhost:3000/payment", {
@@ -82,7 +79,7 @@
 //       <div>
 //       <h1 className="text-center font-bold   text-gray-600 md:text-2xl mb-2">Checkout</h1>
 //       <div className="border-2 border-gray-300 shadow-md shadow-gray-300 rounded-lg mb-80 p-5 px-10 h-80 ">
-        
+
 //       <div className="mt-4 p-4">
 //   <div className="">
 //     <div className="my-3">
@@ -94,7 +91,7 @@
 //         x-model="cardholder"
 //       />
 //     </div>
-   
+
 //   </div>
 // </div>
 
@@ -104,13 +101,10 @@
 //           <button className="btn-pay bg-orange-400 text-white px-3 py-1 rounded-lg " onClick={handleBuyClick} >Buy Now</button>
 //           </div>
 //         </form>
-     
 
- 
 // </div>
 
 //       </div>
-
 
 //       </div>
 //     );
@@ -118,20 +112,22 @@
 // }
 // export default CheckoutForm
 
-
-import { ElementsConsumer, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  ElementsConsumer,
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 import React from "react";
 import CardSection from "./CardSection";
 import axios from "axios";
-function CheckoutForm({stripe, elements}){
-//     const stripe = useStripe();
+function CheckoutForm({ stripe, elements }) {
+  //     const stripe = useStripe();
 
-//   const elements = useElements();
+  //   const elements = useElements();
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-   
 
     // const { stripe, elements } = props;
     if (!stripe || !elements) {
@@ -139,10 +135,9 @@ function CheckoutForm({stripe, elements}){
     }
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card: elements.getElement(CardElement),
-      });
-
+      type: "card",
+      card: elements.getElement(CardElement),
+    });
 
     const card = elements.getElement(CardElement);
     const result = await stripe.createToken(card);
@@ -150,8 +145,8 @@ function CheckoutForm({stripe, elements}){
       console.log(result.error.message);
     } else {
       console.log(result.token);
-    } 
-//handle amount
+    }
+    //handle amount
     const { id } = paymentMethod;
     const response = await axios.post("http://localhost:3000/payment", {
       amount: 10 * 100,
@@ -162,22 +157,30 @@ function CheckoutForm({stripe, elements}){
       try {
         setSuccess(true);
         console.log("goooood");
-} catch (error) {console.log(error);}
-};}
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
-//   render() {
-    return (
-      <div>
-        <div class="product-info">
-          <h3 className="product-title">Apple MacBook Pro</h3>
-          <h4 className="product-price">$999</h4>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <CardSection/>
-          <button className="btn-pay" >Buy Now</button>
+  //   render() {
+  return (
+    <div>
+      <div className="bg-[#373737] w-[35rem]  h-[25rem] rounded-[1.5rem] flex flex-col gap-12 p-12">
+        <h3 className="text-[#fff] text-center font-light">
+          Kindly Note that in order to get your belonging you have to pay a
+          small fee of <span className="text-[#fbe62e]">5JD</span>
+        </h3>
+
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          <CardSection />
+          <button className="w-32 self-center px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737] rounded-lg text-sm  py-2 mt-16 mb-8 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+            Buy Now
+          </button>
         </form>
       </div>
-    );
-//   }
+    </div>
+  );
+  //   }
 }
-export default CheckoutForm
+export default CheckoutForm;
