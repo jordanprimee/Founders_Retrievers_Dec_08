@@ -17,11 +17,27 @@ async function getAllProducts() {
       throw error;
     }
   }
-  
+  async function getTotalretrevCount(search) {
+    try {
+      const totalQuery = {
+        text: `
+          SELECT COUNT(*) FROM founditems
+          WHERE title ILIKE $1
+        `,
+        values: [`%${search}%`],
+      };
+      const totalResult = await pool.query(totalQuery);
+      return parseInt(totalResult.rows[0].count, 10);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
  
 
   
 module.exports = {
     getAllProducts,
-    getAllProductss
+    getAllProductss,
+    getTotalretrevCount
 };

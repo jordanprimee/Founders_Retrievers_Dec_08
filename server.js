@@ -26,6 +26,9 @@ const contactusControllers = require('./controllers/contactusControlletr');
 const ProfileControllers = require('./controllers/profileControllers');
 const allUserControllers = require('./controllers/allUserControllers');
 const userRoutes = require('./Route/alluserRoute');
+const foundRoutes = require('./Route/foundRoute');
+const lostRoutes = require('./Route/lostRoute');
+const retrevRoutes = require('./Route/retrevRoute');
 
 
 
@@ -40,6 +43,11 @@ const profileController = require('./controllers/profileControllers');
 // const multer = require('./middleware/multer')
 // Routes
 app.use('/filter', userRoutes);
+app.use('/foundF', foundRoutes);
+app.use('/lostF', lostRoutes);
+app.use('/retrevF', retrevRoutes);
+
+
 app.post('/register', userController.registerUser);
 app.post('/login', userController.loginUser);
 app.get('/found', foundControllers.getAllProducts);
