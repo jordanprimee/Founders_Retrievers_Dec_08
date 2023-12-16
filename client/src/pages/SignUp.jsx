@@ -12,12 +12,11 @@ export const SignUp = () => {
         backgroundPosition: 'center center',
         display : 'flex',
         justifyContent: 'center',  
-        padding : '7rem'
       }
     
   return (
     <>
-    <div style={BgBLUR}>
+    <div style={BgBLUR} className='lg:p-[7rem] md:p-0 sm:p-0 p-0'>
     <SingUpForm />
     </div>
     </>
