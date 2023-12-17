@@ -23,7 +23,7 @@ export const HomePage = () => {
   const { user } = UseUser();
 
   return (
-    <div>
+    <>
       <HomeHero />
       <hr className="my-6 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
 
@@ -120,19 +120,14 @@ export const HomePage = () => {
           your story with us !
         </div>
       </Link>
-      <div className="ml-24">
+      {/* <div className="ml-24">
         <PublishLost />
         <br />
         <PublishFound />
         <br />
         <DeliveryAlertFound />
-        {/* <Payment /> */}
-      </div>
-{/* 
-      <MainCardFound />
-      <ConfirmContact />
+      </div> */}
 
-      <Payment /> */}
-    </div>
+    </>
   );
 };

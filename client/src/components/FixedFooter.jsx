@@ -90,7 +90,7 @@ export const FixedFooter = (isOpen, onRequestClose) => {
       <div
         className={`${
           showFooter ? "fixed" : ""
-        } bottom-8 scale-75 lg:scale-100 md:scale-75  sm:scale-75 z-[1000] lg:left-[28rem] md:left-[16rem] sm:left-[14rem] left-[10rem] mt-20 flex flex-row items-center justify-center gap-8 mr-16`}
+        } bottom-8 scale-75 lg:scale-100 md:scale-75  sm:scale-75 z-[1000] lg:left-[28rem] md:left-[16rem] sm:left-[14rem] left-[4rem] mt-20 flex flex-row items-center justify-center gap-8 mr-16`}
       >
         <button
           className={`w-[3rem] h-[3rem] rounded-[0.55rem] bg-[#222222] flex justify-center items-center scroll-to-top-button ${
