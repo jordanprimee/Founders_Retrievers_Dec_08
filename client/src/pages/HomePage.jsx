@@ -44,7 +44,7 @@ export const HomePage = () => {
             <span className="text-[#18e074]">Link </span>!{" "}
           </div>
         ) : (
-          <div className="text-[0.85rem]">
+          <div className="text-center text-[0.85rem]">
             <Link
               to="/signup"
               className="text-[#E83434] hover:text-[#E8343485] justify-self-center place-items-center font-light underline decoration-solid "

@@ -89,10 +89,12 @@ export const LostCard = ({
             <button onClick={openConfirmContact}>
               <FoundItBtn />
             </button>
+            {confirmContactIsOpen &&
             <ConfirmContact
               isOpen={confirmContactIsOpen}
               onRequestClose={closeModal}
             />
+          }
             <div className="pl-8">
               <Share />
             </div>

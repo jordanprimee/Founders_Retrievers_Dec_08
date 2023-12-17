@@ -17,6 +17,7 @@ import Modal from "react-modal";
 import { useModal } from "../../hooks/useContext/ModalContext";
 import { useCookies } from 'react-cookie';
 import { useParams } from "react-router-dom";
+import Pay from "../PaymentTwo/Pay"
 
 
 
@@ -27,6 +28,7 @@ export const ConfirmContact = ({ isOpen, onRequestClose }) => {
   const { modalIsOpen, openModal } = useModal();
 
   const [deliveryAlertIsOpen, setDeliveryAlertIsOpen] = useState(false);
+  const [paymentIsOpen, setPaymentIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
 
   const openDeliveryAlert = () => {
@@ -34,7 +36,13 @@ export const ConfirmContact = ({ isOpen, onRequestClose }) => {
   };
   const closeModal = () => {
     setDeliveryAlertIsOpen(false);
+    setPaymentIsOpen(false);
+
   };
+  const openPayment = () => {
+    setPaymentIsOpen(true);
+  };
+
   // Input border style
   const inputBorderStyle = {
     background: "transparent",
@@ -238,6 +246,7 @@ export const ConfirmContact = ({ isOpen, onRequestClose }) => {
       );
 
       // Navigate or handle success as needed
+      setPaymentIsOpen(true);
       console.log("Form data sent successfully:", formDataToSend);
       // navigate("/");
     } catch (error) {
@@ -333,6 +342,7 @@ export const ConfirmContact = ({ isOpen, onRequestClose }) => {
             type="submit"
             className="mt-8 self-center text-center w-52 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             // onClick={openDeliveryAlert}
+            onClick={openPayment}
           >
             Submit Contact Form
           </button>
@@ -341,6 +351,12 @@ export const ConfirmContact = ({ isOpen, onRequestClose }) => {
             onRequestClose={closeModal}
           />
         </form>
+        {paymentIsOpen && 
+        (<Pay
+        isOpen={paymentIsOpen}
+        onRequestClose={closeModal} />)
+}
+      
 
         {/* Have a nice day ! */}
       </Modal>

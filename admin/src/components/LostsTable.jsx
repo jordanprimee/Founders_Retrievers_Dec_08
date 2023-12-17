@@ -26,7 +26,7 @@ export const LostsTable = () => {
   const fetchLostsData = async () => {
     try {
       const lostsResponse = await axios.get(
-        `http://localhost:3000/filter/users2?page=${currentPage}&limit&search=${searchQuery}`
+        `http://localhost:3000/lostF/lostF?page=${currentPage}&limit&search=${searchQuery}`
       );
       setLostsData(lostsResponse.data.users);
       const calculatedTotalPages = Math.ceil(

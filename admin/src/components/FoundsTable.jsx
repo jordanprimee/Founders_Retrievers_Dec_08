@@ -26,7 +26,7 @@ export const FoundsTable = () => {
   const fetchFoundsData = async () => {
     try {
       const foundsResponse = await axios.get(
-        `http://localhost:3000/filter/users2?page=${currentPage}&limit&search=${searchQuery}`
+        `http://localhost:3000/foundF/foundF?page=${currentPage}&limit&search=${searchQuery}`
       );
       setFoundsData(foundsResponse.data.users);
       const calculatedTotalPages = Math.ceil(

@@ -29,9 +29,10 @@ export const RetrievedTable = () => {
       const fetchLostData = async () => {
         try {
           const retrievedResponse = await axios.get(
-            `http://localhost:3000/filter/users2?page=${currentPage}&limit&search=${searchQuery}`
+            `http://localhost:3000/retrevF/retrevF?page=${currentPage}&limit&search=${searchQuery}`
           );
           setLostsData(retrievedResponse.data.users);
+          console.log("retrieve", retrievedResponse.data);
           const calculatedTotalPages = Math.ceil(retrievedResponse.data.total / retrievedResponse.data.limit);
           setTotalPages(calculatedTotalPages);
           setLimitData(retrievedResponse.data.limit);

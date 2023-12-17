@@ -51,10 +51,10 @@ export const Navbar = () => {
 
   return (
     <div className="flex flex-row justify-around">
-      <ul className="flex flex-row pt-8 gap-x-4 mt-4">
+      <ul className="flex flex-row pt-8 gap-x-2 lg:gap-x-4  md:gap-x-4  sm:gap-x-4  mt-4">
         {/* Manage if signed in  */}
         <li className=" ">
-          <button className="flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#18E074] bg-none border border-2 border-[#18E074]  focus:outline-none hover:bg-[#18E074] hover:text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-[7rem]">
+          <button className="whitespace-nowrap hidden sm:hidden lg:flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#18E074] bg-none border border-2 border-[#18E074]  focus:outline-none hover:bg-[#18E074] hover:text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-[7rem]">
             {" "}
             <LinkIcon /> RETRIEVED
           </button>
@@ -62,7 +62,7 @@ export const Navbar = () => {
         <li className=" ">
           <button
             onClick={openFoundModal}
-            className="flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#f1d900] bg-none border border-2 border-[#f1d900]  focus:outline-none hover:bg-[#FBE62E] hover:text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="whitespace-nowrap hidden md:flex sm:flex sm:scale-90 lg:scale-100 lg:flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#f1d900] bg-none border border-2 border-[#f1d900]  focus:outline-none hover:bg-[#FBE62E] hover:text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           >
             <Plus /> I’VE FOUND
           </button>
@@ -70,9 +70,28 @@ export const Navbar = () => {
         <li className=" ">
           <button
             onClick={openLostModal}
-            className="flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#E83434] bg-none border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="whitespace-nowrap hidden md:flex sm:flex sm:scale-90 lg:scale-100 lg:flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#E83434] bg-none border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           >
             <Minus /> I’VE LOST
+          </button>
+        </li>
+        <li>
+          {" "}
+          <button
+            onClick={openFoundModal}
+            className="sm:hidden scale-[0.8] flex bg-none border border-2 border-[#f1d900] rounded-[0.75rem] w-8 p-2 "
+          >
+            {" "}
+            <Plus />
+          </button>
+        </li>
+        <li>
+          {" "}
+          <button
+            onClick={openLostModal}
+            className="sm:hidden scale-[0.8] flex bg-none border border-2 border-[#E83434] rounded-[0.75rem] w-8 p-2 "
+          >
+            <Minus />
           </button>
         </li>
         {user ? (
@@ -88,10 +107,10 @@ export const Navbar = () => {
       </ul>
       <img
         src={LogoTwoPng}
-        className="px-3 pb-2 mt-6 gap-x-4  h-[4.25rem] justify-self-start	"
+        className="sm:scale-60 scale-[0.8] md:scale-60 lg:scale-100 px-3 pb-2  gap-x-4  lg:mt-6 lg:h-[4.25rem] mt-8 h-[3.75rem] justify-self-start	"
       />
       <ul className="flex flex-row pt-2 mt-4">
-        <li className=" mb-2 mt-6 mx-2">
+        <li className="lg:block hidden mb-2 mt-6 mx-2">
           <div className="w-[7rem] px-3 pb-2 text-transparent  bg-transparent focus:outline-none   px-5 py-2 rounded-[0.65rem] text-xs font-semibold"></div>
         </li>
         {user ? (
@@ -148,21 +167,15 @@ export const Navbar = () => {
           </>
         ) : (
           <>
-            <li className=" mb-2 mt-6 mx-2">
-              <Link
-                to="/signin"
-                className=" px-3 pb-2 text-[#000000] bg-transparent focus:outline-none  hover:border hover:border-2 hover:border-[#E83434]  hover:text-[#E83434]  px-5 py-2 rounded-[0.65rem] text-xs font-semibold"
-              >
-                SIGN IN
-              </Link>
+            <li className=" mb-2 mt-6 lg:mx-2 md:mx-2 sm:mx-2 mx-0">
+              <button className="whitespace-nowrap hidden sm:block px-3 pb-2 text-[#000000] bg-transparent focus:outline-none  hover:border hover:border-2 hover:border-[#E83434]  hover:text-[#E83434]  px-5 py-2 rounded-[0.65rem] text-xs font-semibold">
+                <Link to="/signin">SIGN IN</Link>
+              </button>
             </li>
             <li className=" mb-2 mt-6">
-              <Link
-                to="/signup"
-                className=" px-3 pb-2 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              >
-                SIGN UP
-              </Link>
+              <button className="whitespace-nowrap lg:scale-100 sm:scale-90 md:scale-90 scale-[0.75]  px-3 pb-2 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                <Link to="/signup">SIGN UP</Link>
+              </button>
             </li>
           </>
         )}

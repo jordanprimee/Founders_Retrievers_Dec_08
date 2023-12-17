@@ -66,10 +66,27 @@ async function getProductById(productId) {
       throw error;
   }
 }
+async function getTotallostCount(search) {
+  try {
+    const totalQuery = {
+      text: `
+        SELECT COUNT(*) FROM lostitems
+        WHERE title ILIKE $1
+      `,
+      values: [`%${search}%`],
+    };
+    const totalResult = await pool.query(totalQuery);
+    return parseInt(totalResult.rows[0].count, 10);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 
 module.exports = {
   getAllProducts,
   addItem,
   // getProductsByCategory,
-  getProductById
+  getProductById,
+  getTotallostCount
 };

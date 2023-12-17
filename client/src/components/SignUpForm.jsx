@@ -18,7 +18,6 @@ const SingUpForm = () => {
   const FormDivStyle = {
     // margin : '5rem',
     // marginLeft : '5rem',
-    margin: "5rem",
     // padding : '5rem',
     display: "flex",
     flexDirection: "column",
@@ -149,8 +148,8 @@ const SingUpForm = () => {
   };
 
   return (
-    <div style={FormDivStyle}>
-      <div className="p-8 grid grid-col-3 justify-items-stretch  bg-[#373737] rounded-[2rem] w-[45rem] ">
+    <div style={FormDivStyle} className="lg:m-[5rem] m-0 sm:m-1 md:m-8 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]">
+      <div className="p-8 grid grid-col-3 justify-items-stretch bg-[#373737] rounded-[2rem] w-[45rem] ">
         <div className="col-span-3 justify-self-center text-[2.25rem] font-extralight pb-16 pt-4 text-[#fff]">
           SIGN UP
         </div>
