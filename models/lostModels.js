@@ -66,6 +66,23 @@ async function getProductById(productId) {
       throw error;
   }
 }
+async function getLostF({ page, limit, search }) {
+  try {
+    const query = {
+      text: `
+        SELECT * FROM lostitems
+        WHERE title ILIKE $1
+        OFFSET $2 LIMIT $3
+      `,
+      values: [`%${search}%`, page * limit, limit],
+    };
+    const result = await pool.query(query);
+    return result.rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 async function getTotallostCount(search) {
   try {
     const totalQuery = {
@@ -88,5 +105,6 @@ module.exports = {
   addItem,
   // getProductsByCategory,
   getProductById,
-  getTotallostCount
+  getTotallostCount,
+  getLostF
 };

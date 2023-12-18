@@ -15,7 +15,7 @@ export const NotSignedIn = ({ isOpen, onRequestClose }) => {
   return (
     <>
       <Modal
-        className="absolute top-44 left-[30rem] flex flex-col align-center justify-center gap-8 p-12 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] "
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col align-center justify-center gap-8 p-12 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] "
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}

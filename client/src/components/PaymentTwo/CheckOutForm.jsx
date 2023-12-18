@@ -155,7 +155,7 @@ function CheckoutForm({ stripe, elements }) {
 
     if (response.data.success) {
       try {
-        setSuccess(true);
+        // setSuccess(true);
         console.log("goooood");
       } catch (error) {
         console.log(error);

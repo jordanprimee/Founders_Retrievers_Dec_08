@@ -133,7 +133,7 @@ export const MainCardFound = ({
       .get(`http://localhost:3000/found_details/${f_id}`)
       .then((response) => {
         setFound(response.data[0]);
-        console.log("ffffffffffffffffffffff" + f_id),
+        // console.log("ffffffffffffffffffffff" + f_id),
           console.log("iddata", response.data[0]);
       })
       .catch((error) => {

@@ -50,8 +50,9 @@ export const Navbar = () => {
   };
 
   return (
+    <>
     <div className="flex flex-row justify-around">
-      <ul className="flex flex-row pt-8 gap-x-2 lg:gap-x-4  md:gap-x-4  sm:gap-x-4  mt-4">
+      <ul className="flex flex-row pt-8 px-4 lg:gap-x-4  md:gap-x-4  sm:gap-x-4  mt-4">
         {/* Manage if signed in  */}
         <li className=" ">
           <button className="whitespace-nowrap hidden sm:hidden lg:flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#18E074] bg-none border border-2 border-[#18E074]  focus:outline-none hover:bg-[#18E074] hover:text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-[7rem]">
@@ -181,5 +182,6 @@ export const Navbar = () => {
         )}
       </ul>
     </div>
+    </>
   );
 };

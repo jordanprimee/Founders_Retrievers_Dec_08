@@ -43,8 +43,8 @@ async function getFound(req, res) {
     const limit = parseInt(req.query.limit) || 5;
     const search = req.query.search || "";
 
-    const users = await foundModel.getFound({ page, limit, search });
-    const total = await foundModel.getTotalUsersCount(search);
+    const users = await foundModel.getFoundF({ page, limit, search });
+    const total = await foundModel.getTotalfoundsCount(search);
 
     const response = {
       error: false,
@@ -65,4 +65,5 @@ module.exports = {
     additem,
     getProductById,
     getFound
+    
 };
