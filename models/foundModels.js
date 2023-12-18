@@ -80,6 +80,24 @@ async function getProductById(productId) {
     throw error;
   }
 }
+
+async function getFoundF({ page, limit, search }) {
+  try {
+    const query = {
+      text: `
+        SELECT * FROM founditems
+        WHERE title ILIKE $1
+        OFFSET $2 LIMIT $3
+      `,
+      values: [`%${search}%`, page * limit, limit],
+    };
+    const result = await pool.query(query);
+    return result.rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 async function getTotalfoundsCount(search) {
   try {
     const totalQuery = {
@@ -100,5 +118,6 @@ module.exports = {
   getAllProducts,
   additem,
   getProductById,
-  getTotalfoundsCount
+  getTotalfoundsCount,
+  getFoundF
 };

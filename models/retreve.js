@@ -17,6 +17,24 @@ async function getAllProducts() {
       throw error;
     }
   }
+  async function getRetrevF({ page, limit, search }) {
+    try {
+      const query = {
+        text: `
+          SELECT * FROM founditems
+          WHERE is_deleted = true
+          and title ILIKE $1
+          OFFSET $2 LIMIT $3
+        `,
+        values: [`%${search}%`, page * limit, limit],
+      };
+      const result = await pool.query(query);
+      return result.rows;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
   async function getTotalretrevCount(search) {
     try {
       const totalQuery = {
@@ -39,5 +57,6 @@ async function getAllProducts() {
 module.exports = {
     getAllProducts,
     getAllProductss,
-    getTotalretrevCount
+    getTotalretrevCount,
+    getRetrevF
 };

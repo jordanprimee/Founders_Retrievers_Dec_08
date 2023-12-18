@@ -79,8 +79,8 @@ async function getLost(req, res) {
     const limit = parseInt(req.query.limit) || 5;
     const search = req.query.search || "";
 
-    const users = await lostModel.getLost({ page, limit, search });
-    const total = await lostModel.getTotalUsersCount(search);
+    const users = await lostModel.getLostF({ page, limit, search });
+    const total = await lostModel.getTotallostCount(search);
 
     const response = {
       error: false,
