@@ -135,7 +135,7 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
   const swiperParams = {
     breakpoints: {
       550: {
-        slidesPerView: 2,
+        slidesPerView: 4,
       },
       825: {
         slidesPerView: 3,
@@ -165,18 +165,25 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
             style={{
               // setFlag(true),
               // hover: setFlag(false),
-              width: "19rem", 
+              width: "10rem", 
               transition: "transform linear 5s",
               transform: `translate3d(${-index * 25}%, 0, 0)`,
+
+              '@media (max-width: 768px) and (min-width: 480px)': {
+                width: '16rem',
+              },
+              '@media (max-width: 480px)': {
+                width: '1rem',
+              },
             }}
             key={user_id}
           >
             {item.type === "losts" ? (
-              <div className="flex flex-col">
-                <span className="flex flex-row gap-x-2 pb-2 text-[#E83434] bg-none focus:outline-none text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+              <div className="flex flex-col lg:scale-100 scale-75  sm:scale-90">
+                <span className=" flex flex-row gap-x-2 pb-2 text-[#E83434] bg-none focus:outline-none text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                   <Minus /> I’VE LOST
                 </span>
-                <div className="p-8 pb-8 gap-4 grid grid-col-1 grid-flow-row  bg-[#373737] rounded-[1.25rem] w-[18rem] h-[25rem] ">
+                <div className="p-8 pb-8 gap-4 grid grid-col-1 grid-flow-row  bg-[#373737] rounded-[1.25rem] w-[18rem]  h-[25rem] ">
                   <div className="flex flex-row gap-6 ">
                     <img
                       src=""
@@ -222,7 +229,7 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col">
+              <div className="flex flex-col lg:scale-100 scale-75  sm:scale-90lg:scale-100 scale-75  sm:scale-90">
                 <span className=" flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#FBE62E] bg-none text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                   <Plus />{" "}
                   <span className="[text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4)]">

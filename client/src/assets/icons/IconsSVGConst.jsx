@@ -14,20 +14,25 @@ export const Plus = () => {
       viewBox="0 -2 18 17"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="fill-current group-hover:fill-white"
     >
       <path
         d="M1 9H17"
         stroke="#FBE62E"
         stroke-width="2"
         stroke-linecap="round"
-        style={SVGBtnHover}
+        // style={SVGBtnHover}
+        className="fill-current group-hover:fill-white"
+
       />
       <path
         d="M9 17L9 1"
         stroke="#FBE62E"
         stroke-width="2"
         stroke-linecap="round"
-        style={SVGBtnHover}
+        // style={SVGBtnHover}
+        className="fill-current group-hover:fill-white"
+
       />
     </svg>
   );
@@ -332,13 +337,14 @@ export const BurgurList = () => {
   );
 };
 
-export const PlusYellow = () => {
+export const PlusYellow = ({ color = "#fff" }) => {
   const plusStyle = {
-    stroke: "#fff",
+    stroke: color,
     "&:hover": {
       stroke: "#FBE62E",
     },
   };
+
   return (
     <svg
       width="16"
@@ -362,6 +368,7 @@ export const PlusYellow = () => {
     </svg>
   );
 };
+
 
 export const MinusRed = () => {
   const minusStyle = {

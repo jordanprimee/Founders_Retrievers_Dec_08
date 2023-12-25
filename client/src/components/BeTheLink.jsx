@@ -11,7 +11,7 @@ export const BeTheLink = () => {
   const { user } = UseUser();
   return (
     <>
-      <div className="relative grid lg:grid-cols-[64.5rem_30rem] lg:scale-100 scale-50 mt-24">
+      <div className="relative grid grid-cols-2 xl:grid-cols-[8/12_4/12] 2xl:scale-100  sm:scale-75 mt-24">
         <div className="col-span-1 items-start justify-self-center place-self-center flex flex-col align-center">
           <div className="absolute left-1 top-4 w-[20rem] bg-[#86868637] p-4 rounded-[0.75rem]">
             <Comment />

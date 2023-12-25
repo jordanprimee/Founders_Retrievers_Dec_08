@@ -1,168 +1,49 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { MainCardLost } from "../components/MainCardLost";
-import { CardLost } from "../components/CardLost";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/free-mode";
-import { FoundItBtn } from "../components/uiPrimitives/FoundItBtn";
-import { NotSignedIn } from "../components/uiPrimitives/NotSignedIn";
-import { MineBtn } from "../components/uiPrimitives/MineBtn";
-// import { MainCardFound } from "./MainCardFound";
-import { Comment } from "../components/uiPrimitives/Comment";
-import { Location } from "../assets/icons/IconsSVGConst";
-import {
-  Calendar,
-  Minus,
-  Plus,
-  Share,
-  Cancel,
-} from "../assets/icons/IconsSVGConst";
-
-// import SwiperCore, { Autoplay } from 'swiper/core';
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/free-mode"; 
-
-// Import Swiper modules
-// SwiperCore.use([Autoplay]);
-
-import { useModal } from "../../src/hooks/useContext/ModalContext";
 import Modal from "react-modal";
-// import { CardFound } from "./CardFound";
-import { DeliveryAlertFound } from "../components/DeliveryAlertFound";
-import { ConfirmContact } from "../components/uiPrimitives/ConfirmContact";
-// import Payment from "../components/Payment";
 import {
   FoundCard,
   LostCard,
   RetrievedCard,
-} from "../components/profile/CardsProfile";
-
+} from "../components/uiPrimitives/Cards";
+import Pagination from "../components/profile/Pagination";
 import { UseUser } from "../hooks/useContext/UserContext";
+import { useModal } from "../../src/hooks/useContext/ModalContext";
+
 Modal.setAppElement(document.getElementById("root"));
 
 export const FeedPage = ({ isOpen, onRequestClose }) => {
   window.scrollTo({ top: 0, behavior: "smooth" });
-  const { user } = UseUser();
 
-  const { modalIsOpen } = useModal();
-  // const [dataFromFirstAPI, setDataFromFirstAPI] = useState([]);
-  // const [dataFromSecondAPI, setDataFromSecondAPI] = useState([]);
-  // const [isUserSignedIn, setIsUserSignedIn] = useState(false);
-  // const [combinedData, setCombinedData] = useState([]);
-
-  // const [confirmContactIsOpen, setConfirmContactIsOpen] = useState(false);
-  // const [paymentIsOpen, setPaymentIsOpen] = useState(false);
-
-  // const openConfirmContact = () => {
-  //   setConfirmContactIsOpen(true);
-  // };
-  // const openPayment = () => {
-  //   setPaymentIsOpen(true);
-  // };
-  // const openNotSignedIN = () => {
-  //   setIsUserSignedIn(true);
-  // };
-  // const closeModal = () => {
-  //   setConfirmContactIsOpen(false);
-  //   setPaymentIsOpen(false);
-  //   setIsUserSignedIn(false);
-  // };
-
-  // useEffect(() => {
-  //   // GET data from LOSTS
-  //   axios
-  //     .get("http://localhost:3000/lost")
-  //     .then((response) => {
-  //       setDataFromFirstAPI(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data from the first API:", error);
-  //     });
-
-  //   // GET data from FOUNDS
-  //   axios
-  //     .get("http://localhost:3000/found")
-  //     .then((response) => {
-  //       setDataFromSecondAPI(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data from the second API:", error);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   const newCombinedData = [];
-
-  //   for (
-  //     let i = 0;
-  //     i < Math.max(dataFromFirstAPI.length, dataFromSecondAPI.length);
-  //     i++
-  //   ) {
-  //     if (dataFromFirstAPI[i]) {
-  //       newCombinedData.push({ type: "losts", data: dataFromFirstAPI[i] });
-  //     }
-
-  //     if (dataFromSecondAPI[i]) {
-  //       newCombinedData.push({ type: "found", data: dataFromSecondAPI[i] });
-  //     }
-  //   }
-
-  //   setCombinedData(newCombinedData);
-  // }, [dataFromFirstAPI, dataFromSecondAPI]);
-
-  // PAGINATION //
-
-  // const ITEMS_PER_PAGE = 8;
-
-  // const [currentPage, setCurrentPage] = useState(1);
-
-  // const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  // const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  // const currentItems = combinedData.slice(indexOfFirstItem, indexOfLastItem);
-
-  // const paginate = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
-
-  /////FILTER//////
   const [dataFromFirstAPI, setDataFromFirstAPI] = useState([]);
   const [dataFromSecondAPI, setDataFromSecondAPI] = useState([]);
   const [dataFromThirdAPI, setDataFromThirdAPI] = useState([]);
   const [dataFromFourthAPI, setDataFromFourthAPI] = useState([]);
   const [combinedData, setCombinedData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [isUserSignedIn, setIsUserSignedIn] = useState(true);
-  // const { user } = UseUser();
+
+  const { user } = UseUser();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // GET data from LOSTS
         const lostsResponse = await axios.get(`http://localhost:3000/lost`);
         setDataFromFirstAPI(lostsResponse.data);
-        console.log("lost", lostsResponse.data);
-
-        // // GET data from FOUNDS
+        console.log("lost", dataFromFirstAPI);
         const foundsResponse = await axios.get(`http://localhost:3000/found`);
         setDataFromSecondAPI(foundsResponse.data);
-        console.log("found", foundsResponse.data);
+        console.log("found", dataFromSecondAPI);
         const retrievedResponse = await axios.get(
           `http://localhost:3000/retreve`
         );
         setDataFromThirdAPI(retrievedResponse.data);
-        console.log("retrieve1", retrievedResponse.data);
-
+        console.log("retrieve1", dataFromThirdAPI);
         const retrievedResponseTwo = await axios.get(
           `http://localhost:3000/retreve2`
         );
         setDataFromFourthAPI(retrievedResponseTwo.data);
-        console.log(retrievedResponseTwo.data);
-        console.log("retrieve2", retrievedResponseTwo.data);
+        console.log("retrieve2", dataFromFourthAPI);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -180,7 +61,8 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
       Math.max(
         dataFromFirstAPI.length,
         dataFromSecondAPI.length,
-        dataFromThirdAPI.length
+        dataFromThirdAPI.length,
+        dataFromFourthAPI.length
       );
       i++
     ) {
@@ -200,145 +82,108 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
     }
 
     setCombinedData(combined);
-  }, [dataFromFirstAPI, dataFromSecondAPI, dataFromThirdAPI, dataFromFourthAPI]);
-
-  ////////////////////// Display based on status /////////////////////////////////////
-  // // useEffect(() => {
-  // //   const combined = [];
-
-  // //   for (
-  // //     let i = 0;
-  // //     i <
-  // //     Math.max(
-  // //       dataFromFirstAPI.length,
-  // //       dataFromSecondAPI.length,
-  // //       dataFromThirdAPI.length,
-  // //       dataFromFourthAPI.length
-  // //     );
-  // //     i++
-  // //   ) {
-  // //     if (dataFromFirstAPI[i] && dataFromFirstAPI[i].status === "true") {
-  // //       combined.push({ type: "lost", data: dataFromFirstAPI[i] });
-  // //     }
-
-  // //     if (dataFromSecondAPI[i] && dataFromSecondAPI[i].status === "true") {
-  // //       combined.push({ type: "found", data: dataFromSecondAPI[i] });
-  // //     }
-
-  // //     if (dataFromThirdAPI[i]) {
-  // //       combined.push({ type: "retrieve", data: dataFromThirdAPI[i] });
-  // //     }
-
-  // //     if (dataFromFourthAPI[i] ) {
-  // //       combined.push({ type: "retrieve", data: dataFromFourthAPI[i] });
-  // //     }
-  // //   }
-
-  //   setCombinedData(combined);
-  // }, [
-  //   dataFromFirstAPI,
-  //   dataFromSecondAPI,
-  //   dataFromThirdAPI,
-  //   dataFromFourthAPI,
-  // ]);
+    setFilteredData(combined);
+  }, [
+    dataFromFirstAPI,
+    dataFromSecondAPI,
+    dataFromThirdAPI,
+    dataFromFourthAPI,
+  ]);
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedCity, setSelectedCity] = useState("All");
   const [selectedDay, setSelectedDay] = useState("All");
+  const [selectedListItem, setSelectedListItem] = useState("All");
 
-  const [showMyLosts, setShowMyLosts] = useState(false);
-  const [showMyFounds, setShowMyFounds] = useState(false);
-  const [showMyAllPublishes, setShowMyAllPublishes] = useState(true);
-  const [showMyRetrieved, setShowMyRetrieved] = useState(false);
-
-  const [filteredData, setFilteredData] = useState(combinedData);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-
-    const filteredData =
-      category === "All"
-        ? combinedData
-        : combinedData.filter((item) => item.data.category === category);
-
+    // Filtering logic based on the selected category
+    const filteredData = combinedData.filter(
+      (item) => item.data.category === category
+    );
     setFilteredData(filteredData);
   };
 
   const handleCityChange = (city) => {
     setSelectedCity(city);
-
-    const filteredData =
-      city === "All"
-        ? combinedData
-        : combinedData.filter((item) => item.data.city === city);
-
+    // Filtering logic based on the selected city
+    const filteredData = combinedData.filter((item) => item.data.city === city);
     setFilteredData(filteredData);
   };
 
   const handleDayChange = (day) => {
     setSelectedDay(day);
-
-    const filteredData =
-      day === "All"
-        ? combinedData
-        : combinedData.filter((item) => item.data.day === day);
-
+    // Filtering logic based on the selected day
+    const filteredData = combinedData.filter(
+      (item) =>
+        item.data.date_lost === day || item.data.date_found === day
+    );
     setFilteredData(filteredData);
   };
-  const handleMyLostsClick = () => {
-    const lostsData = combinedData.filter((item) => item.type === "lost");
 
-    setFilteredData(lostsData);
-    setShowMyLosts(true);
-    setShowMyFounds(false);
-    setShowMyRetrieved(false);
+  const filterData = (category, city, day) => {
+    let tempFilteredData = combinedData;
+
+    if (category !== "All") {
+      tempFilteredData = tempFilteredData.filter(
+        (item) => item.data.category === category
+      );
+    }
+
+    if (city !== "All") {
+      tempFilteredData = tempFilteredData.filter(
+        (item) => item.data.city === city
+      );
+    }
+
+    if (day !== "All") {
+      tempFilteredData = tempFilteredData.filter(
+        (item) => item.data.day === day
+      );
+    }
+
+    setFilteredData(tempFilteredData);
   };
 
-  const handleMyFoundsClick = () => {
-    const foundData = combinedData.filter((item) => item.type === "found");
+  const handleFilterClick = (type) => {
+    let filteredData = combinedData;
 
-    setFilteredData(foundData);
-    setShowMyFounds(true);
-    setShowMyLosts(false);
-    setShowMyRetrieved(false);
-  };
-  const handleMyRetrievedClick = () => {
-    const retrievedData = combinedData.filter(
-      (item) => item.type === "retrieve"
-    );
+    switch (type) {
+      case "lost":
+        filteredData = combinedData.filter((item) => item.type === "lost");
+        break;
+      case "found":
+        filteredData = combinedData.filter((item) => item.type === "found");
+        break;
+      case "retrieve":
+        filteredData = combinedData.filter((item) => item.type === "retrieve");
+        break;
+      default:
+        // "All" or other cases
+        break;
+    }
 
-    setFilteredData(retrievedData);
-    setShowMyFounds(false);
-    setShowMyAllPublishes(false);
-    setShowMyLosts(false);
-    setShowMyRetrieved(true);
-  };
-  const handleMyAllPublishes = () => {
-    setFilteredData(combinedData);
-    setShowMyAllPublishes(true);
-    setShowMyFounds(false);
-    setShowMyLosts(false);
+    setFilteredData(filteredData);
+    setSelectedCategory("All"); // Reset selected category
+    setSelectedCity("All"); // Reset selected city
+    setSelectedDay("All"); // Reset selected day
+    setSelectedListItem(type);
   };
 
-  // Extract unique categories
   const uniqueCategories = [
     ...new Set(combinedData.map((item) => item.data.category)),
   ];
 
-  // Extract unique cities
   const uniqueCities = [...new Set(combinedData.map((item) => item.data.city))];
 
-  // Extract unique date
   const uniqueDay = [
     ...new Set(
       combinedData.map((item) => item.data.date_lost || item.data.date_found)
     ),
   ];
 
-  // PAGINATION //
-
   const ITEMS_PER_PAGE = 6;
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
@@ -346,6 +191,14 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => {
+    const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+
+    if (pageNumber < 1) {
+      pageNumber = 1;
+    } else if (pageNumber > totalPages) {
+      pageNumber = totalPages;
+    }
+
     setCurrentPage(pageNumber);
   };
 
@@ -386,30 +239,40 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
             </li>
           </ul>
           <ul className="flex flex-row gap-4">
+            {/* ... */}
             <li
-              className="hover:text-[#18E074]"
-              onClick={() => handleMyAllPublishes()}
+              className={`${
+                selectedListItem === "lost" ? "text-[#E83434]" : "text-[#373737]"
+              } hover:text-[#E83434] cursor-pointer`}
+              onClick={() => handleFilterClick("lost")}
             >
-              ALL
+              LOSTS
             </li>
             <li
-              className="hover:text-[#18E074]"
-              onClick={() => handleMyRetrievedClick()}
-            >
-              LINKED
-            </li>
-            <li
-              className="hover:text-[#FBE62E]"
-              onClick={() => handleMyFoundsClick()}
+              className={`${
+                selectedListItem === "found" ? "text-[#FBE62E]" : "text-[#373737]"
+              } hover:text-[#FBE62E] cursor-pointer`}
+              onClick={() => handleFilterClick("found")}
             >
               FOUNDS
             </li>
             <li
-              className="hover:text-[#E83434]"
-              onClick={() => handleMyLostsClick()}
+              className={`${
+                selectedListItem === "retrieve" ? "text-[#18E074]" : "text-[#373737]"
+              } hover:text-[#18E074] cursor-pointer`}
+              onClick={() => handleFilterClick("retrieve")}
             >
-              LOSTS
+              LINKED
             </li>
+            <li
+              className={`${
+                selectedListItem === "All" ? "text-[#E83434]" : "text-[#373737]"
+              } hover:text-[#E83434] cursor-pointer`}
+              onClick={() => handleFilterClick("All")}
+            >
+              ALL
+            </li>
+            {/* ... */}
           </ul>
         </div>
         <hr className=" w-[44rem] mt-4 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 " />
@@ -462,112 +325,51 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
 
       <div>
         {/* DISPLAYED DATA */}
-        <div className="flex flex-row flex-wrap	 justify-center items-center gap-12 mb-28">
+        <div className="flex flex-row flex-wrap justify-center items-center gap-12 mb-28">
           <div className="flex flex-row flex-wrap justify-center items-center gap-12 mr-44 ml-44 mb-28 mt-12">
-            {/* Render your data based on the state of filters */}
-            {showMyLosts &&
-              currentItems.map((item) => (
-                <LostCard
-                  // user_id={filteredData.data.user_id}
-                  title={item.data.title}
-                  city={item.data.city}
-                  day={item.data.day}
-                />
-              ))}
-            {showMyFounds &&
-              currentItems.map((item) => (
-                <FoundCard
-                  // user_id={filteredData.data.user_id}
-                  id={item.data.id}
-                  title={item.data.title}
-                  city={item.data.city}
-                  day={item.data.day}
-                />
-              ))}
-
-            {/*4$$$$$$$$$$$$$$ FILTER IS NOT APPLIED &&& when changing list to retrieved it becomes empty  $$$$$$$$$$$$ */}
-            {!showMyFounds &&
-              !showMyLosts &&
-              !showMyRetrieved &&
-              showMyAllPublishes &&
-              currentItems.map((item) => (
-                <>
-                  {item.type === "lost" ? (
+            {currentItems.map((item) => {
+              switch (item.type) {
+                case "lost":
+                  return (
                     <LostCard
-                      id={item.data.id}
+                      key={item.data.id}
                       title={item.data.title}
                       city={item.data.city}
                       day={item.data.day}
                     />
-                  ) : item.type === "found" ? (
+                  );
+                case "found":
+                  return (
                     <FoundCard
+                      key={item.data.id}
                       title={item.data.title}
                       city={item.data.city}
                       day={item.data.day}
                     />
-                  ) : null}
-                </>
-              ))}
-            {showMyRetrieved &&
-              !showMyAllPublishes &&
-              currentItems.map((item) => (
-                <RetrievedCard
-                  // user_id={filteredData.data.user_id}
-                  uesrname={item.data.title}
-                  description={item.data.description}
-                />
-              ))}
+                  );
+                case "retrieve":
+                  return (
+                    <RetrievedCard
+                      key={item.data.id}
+                      username={item.data.title}
+                      description={item.data.description}
+                    />
+                  );
+                default:
+                  return null;
+              }
+            })}
           </div>
         </div>
 
         {/* PAGINATION  */}
 
-        <div class="flex justify-center">
-          <nav aria-label="Page navigation example">
-            <ul className="flex list-style-none">
-              <li
-                className={`page-item ${currentPage === 1 ? "disabled" : ""}`}
-                onClick={() => paginate(currentPage - 1)}
-              >
-                <a
-                  className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-                  href="#"
-                  tabIndex="-1"
-                >
-                  Previous
-                </a>
-              </li>
-
-              {Array.from(
-                { length: Math.ceil(filteredData.length / ITEMS_PER_PAGE) },
-                (_, index) => (
-                  <li key={index} className="page-item">
-                    <a
-                      className={`page-link relative block py-1.5 px-3 rounded border-0 outline-none transition-all duration-300 text-gray-800 focus:shadow-none ${
-                        currentPage === index + 1 ? "bg-gray-200" : ""
-                      }`}
-                      href="#"
-                      onClick={() => paginate(index + 1)}
-                    >
-                      {index + 1}
-                    </a>
-                  </li>
-                )
-              )}
-              <li
-                className="page-item"
-                onClick={() => paginate(currentPage + 1)}
-              >
-                <a
-                  className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                  href="#"
-                >
-                  Next
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          filteredData={filteredData}
+          ITEMS_PER_PAGE={ITEMS_PER_PAGE}
+          paginate={paginate}
+        />
       </div>
     </>
   );

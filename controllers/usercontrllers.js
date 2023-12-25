@@ -21,7 +21,23 @@ const registerUser = async (req, res) => {
     // Create a new user in the database with the hashed password
     const newUser = await UserModel.createUser(username, email, hashedPassword, phonenumber, city, country);
 
-    res.status(200).json({ message: 'User registered successfully', user: newUser });
+    const payload = {
+      id_user: newUser.id_user,
+      email: newUser.email,
+      username: newUser.username,
+    };
+
+    const secretKey = process.env.SECRET_KEY;
+    const token = jwt.sign(payload, secretKey, { expiresIn: '7d' });
+    console.log(token)
+
+    res.status(200).json({
+      message: 'User registered in successfully',
+      token: token,
+      id_user: newUser.id_user,
+    });
+
+    // res.status(200).json({ message: 'User registered successfully', user: newUser , token : token });
   } catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ message: 'Internal server error' });

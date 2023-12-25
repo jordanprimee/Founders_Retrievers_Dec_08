@@ -9,6 +9,7 @@ import { SuccessfullyUploaded } from "./responseModals/SuccessfullyUploaded";
 import { FailedToUpload } from "./responseModals/FailedToUpload";
 import { SuccessPublishFound } from "./responseModals/SuccessPublishFound";
 import useUserData from "../hooks/useContext/UseUserData"; ///////////SEND user id///////////
+import { ConfirmContactFound } from "./uiPrimitives/ConfirmContactFound";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -19,8 +20,13 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
   const [successfullyUploadedIsOpen, setSuccessfullyUploadedIsOpen] =
     useState(false);
   const [failedToUploadIsOpen, setFailedToUploadIsOpen] = useState(false);
-  const openSuccessfullyUploaded = () => {
-    setSuccessfullyUploadedIsOpen(true);
+  const [confirmContactIsOpen, setConfirmContactIsOpen] = useState(false);
+  // const openSuccessfullyUploaded = () => {
+  //   setSuccessfullyUploadedIsOpen(true);
+  // };
+
+  const openConfirmContact = () => {
+    setConfirmContactIsOpen(true);
   };
   const openFailedToUpload = () => {
     setFailedToUploadIsOpen(true);
@@ -29,6 +35,7 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
   const closeModal = () => {
     setSuccessfullyUploadedIsOpen(false);
     setFailedToUploadIsOpen(false);
+    setConfirmContactIsOpen(false);
   };
 
   const modalStyle = {
@@ -106,7 +113,8 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
 
       if (response.status === 200) {
         onRequestClose();
-        setSuccessfullyUploadedIsOpen(true);
+
+        // setSuccessfullyUploadedIsOpen(true);
         // setFailedToUploadIsOpen(true);
 
         console.log("Form submitted successfully!");
@@ -123,15 +131,21 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
 
   return (
     <>
-      {successfullyUploadedIsOpen && (
+      {/* {successfullyUploadedIsOpen && (
         <SuccessPublishFound 
           isOpen={openSuccessfullyUploaded}
           onRequestClose={closeModal}
         />
-      )}
+      )} */}
       {failedToUploadIsOpen && (
         <FailedToUpload
           isOpen={openFailedToUpload}
+          onRequestClose={closeModal}
+        />
+      )}
+      {confirmContactIsOpen && (
+        <ConfirmContactFound
+          isOpen={openConfirmContact}
           onRequestClose={closeModal}
         />
       )}
@@ -148,10 +162,10 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
           className="flex flex-col align-start justify-start gap-4 "
         >
           <div className="flex flex-row justify-between	">
-            <span className="w-32 flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 hover:text-[#FBE62E] bg-none border border-2 hover:border-[#FBE62E]  focus:outline-none text-[#FFFFFF] text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-              <PlusYellow /> I’VE FOUND
+            <span className="w-32 flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#FBE62E] bg-none border border-2 border-[#FBE62E]  focus:outline-none  text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2 ">
+              <PlusYellow color="#FBE62E" /> I’VE FOUND
             </span>
-            <button onClick={onRequestClose} className="flex justify-end">
+            <button onClick={onRequestClose} className="flex justify-end ">
               <Cancel />
             </button>
           </div>
@@ -172,25 +186,31 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             required
           />
 
-          <label className="self-start text-[0.85rem] mb-1 justify-self-center place-items-center text-[#CDCDCD55]">
+          <label className="self-start text-[1rem] mb-1 justify-self-center place-items-center text-[#CDCDCD95]">
             Under what category does it fall !
           </label>
 
           <select
             name="category"
             id=""
-            className="w-32 bg-transparent text-[#CDCDCD95]"
+            className="w-36 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
             onChange={handleInputChange}
           >
-            <option value="">All categories</option>
+            <option value="" disabled selected className="bg-[#373737] ">
+              All categories
+            </option>
             {categories.map((item) => (
-              <option key={item.id} value={item.category}>
+              <option
+                key={item.id}
+                value={item.category}
+                className="bg-[#373737]"
+              >
                 {item.category}
               </option>
             ))}
           </select>
 
-          <label className="self-start text-[0.85rem] mb-1 justify-self-center place-items-center text-[#CDCDCD55]">
+          <label className="self-start text-[1rem] mb-1 justify-self-center place-items-center text-[#CDCDCD95]">
             Where and when did you find it !
           </label>
 
@@ -198,42 +218,50 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             <select
               name="country"
               id=""
-              className="w-24 bg-transparent text-[#CDCDCD95]"
+              className="w-28 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
               onChange={handleInputChange}
               required
             >
-              <option value="">Country</option>
-              <option value="Jordan">Jordan</option>
+              <option value="" disabled selected className="bg-[#373737] ">
+                Country
+              </option>
+              <option value="Jordan" className="bg-[#373737]">
+                Jordan
+              </option>
             </select>
             <select
               name="city"
               id=""
-              className="w-24 bg-transparent text-[#CDCDCD95]"
+              className="w-24 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
               onChange={handleInputChange}
               required
             >
-              <option value="">City</option>
-              <option value="Amman">Amman</option>
-              <option value="Zarqaa">Zarqaa</option>
+              <option value="" disabled selected className="bg-[#373737] ">
+                City
+              </option>
+              <option value="Amman" className="bg-[#373737]">
+                Amman
+              </option>
+              <option value="Zarqaa" className="bg-[#373737]">
+                Zarqaa
+              </option>
             </select>
             <input
               type="date"
               name="date_found"
               value={formData.date_found}
               onChange={handleInputChange}
-              className="w-32 bg-transparent text-[#CDCDCD95]"
+              className="w-36 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
               required
             />
           </label>
 
-          <label
-            htmlFor=""
-            className="self-start text-[0.85rem] mb-1 justify-self-center place-items-center text-[#CDCDCD55]"
-          >
-            Attach images of the item
+          <label className="self-start text-[1rem] mb-1 justify-self-center place-items-center text-[#CDCDCD95]">
+            Attach images of the item you found
           </label>
           {/* ///IMAGE//// */}
           <input
+            className="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-[#ffffff85] bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
             type="file"
             // id="image"
             // name="image"

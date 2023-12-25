@@ -16,7 +16,7 @@ export const UserDataTwo = ({ isOpen, onRequestClose }) => {
   const [userData, setUserData] = useState('');
 
   ///////////////JWT///////////////
-  const { user } = UseUser();
+  const { user, logout } = UseUser();
   const [cookies] = useCookies(['userToken']);
 
   useEffect(() => {
@@ -70,6 +70,12 @@ export const UserDataTwo = ({ isOpen, onRequestClose }) => {
           onClick={() => openModal()}
         >
           Update my Info
+        </div>
+        <div
+          className=" mt-8 text-[#000] font-light text-[0.9rem] hover:underline flex gap-16 items-center"
+          onClick={logout}
+          >
+          Log out
         </div>
         <UpdateUserDataModal isOpen={modalIsOpen} onRequestClose={closeModal} />
       </div>
