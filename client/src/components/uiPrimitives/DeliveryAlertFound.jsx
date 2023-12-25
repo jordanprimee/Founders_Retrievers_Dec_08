@@ -58,7 +58,8 @@ export const DeliveryAlertFound = ({ isOpen, onRequestClose }) => {
         <button onClick={onRequestClose} className="flex justify-end">
           <Cancel />
         </button>
-        <div className="self-center">
+        <div className="self-center relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E83434] opacity-75"></span>{" "}
           <AlertRed />{" "}
         </div>
         <div className="text-[1rem] font-light text-[#fff] text-wrap text-center">

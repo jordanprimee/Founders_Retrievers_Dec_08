@@ -18,7 +18,7 @@ const Pay = ({ isOpen, onRequestClose }) => {
   const modalStyle = {
     overlay: {
       backgroundColor: "#ffffff10", // Set the overlay background color with transparency
-      zIndex: 5, // Set the z-index for the overlay
+      zIndex: 6002, // Set the z-index for the overlay
     },
   };
 
@@ -33,12 +33,13 @@ const Pay = ({ isOpen, onRequestClose }) => {
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
-        className="m-auto flex flex-col align-center mt-40 justify-center gap-8 p-20 bg-[#373737] rounded-[1rem] w-[44rem] h-[30rem]  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45] "
+        className="m-auto flex flex-col align-center mt-40 justify-center gap-8 p-20 bg-[#373737] rounded-[1rem] w-[44rem] h-[33rem]  absolute bottom-1/2 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45] "
       >
-        <button onClick={onRequestClose} className="flex justify-end pt-16">
-          <Cancel />
+        <button onClick={onRequestClose} className="flex self-end pt-16">
+          <Cancel size={12} color="#CDCDCD" />
         </button>
         <Payment />
+        {/* <div>please wait till a success message pops up</div> */}
       </Modal>
     </>
   );

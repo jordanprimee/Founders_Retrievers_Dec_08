@@ -95,7 +95,6 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
   const [selectedDay, setSelectedDay] = useState("All");
   const [selectedListItem, setSelectedListItem] = useState("All");
 
-
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     // Filtering logic based on the selected category
@@ -116,11 +115,26 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
     setSelectedDay(day);
     // Filtering logic based on the selected day
     const filteredData = combinedData.filter(
-      (item) =>
-        item.data.date_lost === day || item.data.date_found === day
+      (item) => item.data.date_lost === day || item.data.date_found === day
     );
     setFilteredData(filteredData);
   };
+
+  /////////////////search.//////////////////////
+  const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    // Filter based on search term and category
+    const filteredData = combinedData.filter(
+      (item) =>
+        (item.data.title &&
+          item.data.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (item.data.category &&
+          item.data.category.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+    setFilteredData(filteredData);
+  }, [searchTerm, selectedCategory, combinedData]);
+
+  /////////////////search.//////////////////////
 
   const filterData = (category, city, day) => {
     let tempFilteredData = combinedData;
@@ -242,7 +256,9 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
             {/* ... */}
             <li
               className={`${
-                selectedListItem === "lost" ? "text-[#E83434]" : "text-[#373737]"
+                selectedListItem === "lost"
+                  ? "text-[#E83434]"
+                  : "text-[#373737]"
               } hover:text-[#E83434] cursor-pointer`}
               onClick={() => handleFilterClick("lost")}
             >
@@ -250,7 +266,9 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
             </li>
             <li
               className={`${
-                selectedListItem === "found" ? "text-[#FBE62E]" : "text-[#373737]"
+                selectedListItem === "found"
+                  ? "text-[#FBE62E]"
+                  : "text-[#373737]"
               } hover:text-[#FBE62E] cursor-pointer`}
               onClick={() => handleFilterClick("found")}
             >
@@ -258,7 +276,9 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
             </li>
             <li
               className={`${
-                selectedListItem === "retrieve" ? "text-[#18E074]" : "text-[#373737]"
+                selectedListItem === "retrieve"
+                  ? "text-[#18E074]"
+                  : "text-[#373737]"
               } hover:text-[#18E074] cursor-pointer`}
               onClick={() => handleFilterClick("retrieve")}
             >
@@ -285,6 +305,8 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
               type="search"
               name="search"
               placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
               <svg
@@ -334,8 +356,15 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
                     <LostCard
                       key={item.data.id}
                       title={item.data.title}
-                      city={item.data.city}
-                      day={item.data.day}
+                      city_lost={item.data.city}
+                      date_lost={item.data.date_lost}
+                      image={item.data.image}
+                      created_at={item.data.created_at}
+                      description={item.data.description}
+                      // user_id,
+                      // username={item.data.username}
+                      // usercity={item.data.usercity}
+                      // userimage,
                     />
                   );
                 case "found":
@@ -343,8 +372,14 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
                     <FoundCard
                       key={item.data.id}
                       title={item.data.title}
-                      city={item.data.city}
-                      day={item.data.day}
+                      city_found={item.data.city}
+                      date_found={item.data.date_found}
+                      image={item.data.image}
+                      created_at={item.data.created_at}
+                      description={item.data.description}
+                      // username={item.data.username}
+                      // usercity={item.data.usercity}
+                      // userimage,
                     />
                   );
                 case "retrieve":
@@ -353,6 +388,7 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
                       key={item.data.id}
                       username={item.data.title}
                       description={item.data.description}
+                      // image, userimage, uesrname, description
                     />
                   );
                 default:

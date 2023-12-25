@@ -118,13 +118,28 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardSection from "./CardSection";
 import axios from "axios";
+import { SuccessfullyPaid } from "./SuccessfullyPaid";
+import { FailedToPay } from "./FailedToPay";
 function CheckoutForm({ stripe, elements }) {
   //     const stripe = useStripe();
 
   //   const elements = useElements();
+  const [deliveryAlertIsOpen, setDeliveryAlertIsOpen] =
+  useState(false);
+const [failedToUploadIsOpen, setFailedToUploadIsOpen] = useState(false);
+
+const openPayment = () => {
+  setDeliveryAlertIsOpen(true);
+};
+const openFailedToUpload = () => {
+  setFailedToUploadIsOpen(true);
+};
+const closeModal = () => {
+  setDeliveryAlertIsOpen(false);
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -151,11 +166,14 @@ function CheckoutForm({ stripe, elements }) {
     const response = await axios.post("http://localhost:3000/payment", {
       amount: 10 * 100,
       id,
-    });
+    }
+    );
 
     if (response.data.success) {
       try {
         // setSuccess(true);
+        setDeliveryAlertIsOpen(true);
+
         console.log("goooood");
       } catch (error) {
         console.log(error);
@@ -165,7 +183,20 @@ function CheckoutForm({ stripe, elements }) {
 
   //   render() {
   return (
-    <div>
+    <>
+     {deliveryAlertIsOpen && (
+        <SuccessfullyPaid
+        onRequestClose={closeModal} 
+          isOpen={openPayment}
+        />
+      )}
+       {failedToUploadIsOpen && (
+        <FailedToPay
+          isOpen={openFailedToUpload}
+          onRequestClose={closeModal}
+        />
+      )}
+    <div className="absolute bottom-1/2 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]">
       <div className="bg-[#373737] w-[35rem]  h-[25rem] rounded-[1.5rem] flex flex-col gap-12 p-12">
         <h3 className="text-[#fff] text-center font-light">
           Kindly Note that in order to get your belonging you have to pay a
@@ -174,12 +205,16 @@ function CheckoutForm({ stripe, elements }) {
 
         <form onSubmit={handleSubmit} className="flex flex-col">
           <CardSection />
-          <button className="w-32 self-center px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737] rounded-lg text-sm  py-2 mt-24 mb-8 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+          <button className="w-32 self-center px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737] rounded-lg text-sm  py-2 mt-24 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
             Buy Now
           </button>
         </form>
+
+        <div className=" self-center text-[#fff] font-light  text-sm mb-8">please wait till a success message pops up</div>
+
       </div>
     </div>
+    </>
   );
   //   }
 }

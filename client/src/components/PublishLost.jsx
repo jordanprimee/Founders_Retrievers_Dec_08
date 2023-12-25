@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  Cancel,
-  MinusRed,
-} from "../assets/icons/IconsSVGConst";
+import { Cancel, MinusRed } from "../assets/icons/IconsSVGConst";
 
 import Modal from "react-modal";
 import { FailedToUpload } from "./responseModals/FailedToUpload";
-import useUserData from "../hooks/useContext/UseUserData"; 
+import useUserData from "../hooks/useContext/UseUserData";
 import { ConfirmContactLost } from "./uiPrimitives/ConfirmContactLost";
 
 Modal.setAppElement(document.getElementById("root"));
 
 export const PublishLost = ({ isOpen, onRequestClose }) => {
-  const { userData } = useUserData(); 
+  const { userData } = useUserData();
 
   const [failedToUploadIsOpen, setFailedToUploadIsOpen] = useState(false);
   const [confirmContactIsOpen, setConfirmContactIsOpen] = useState(false);
@@ -115,6 +112,27 @@ export const PublishLost = ({ isOpen, onRequestClose }) => {
     } catch (error) {
       console.error("Error:", error);
       setFailedToUploadIsOpen(true);
+    }
+  };
+  const [descError, setDescError] = useState("");
+
+  const handleTextChange = (e) => {
+    const inputValue = e.target.value;
+
+    // Limit the input to 100 characters
+    const limitedText = inputValue.slice(0, 50);
+
+    // Update the state
+    setFormData({
+      ...formData,
+      description: limitedText,
+    });
+
+    // Check if the input exceeds the character limit
+    if (inputValue.length > 100) {
+      setError("Exceeded the character limit (100 characters)");
+    } else {
+      setError("");
     }
   };
 
@@ -260,9 +278,12 @@ export const PublishLost = ({ isOpen, onRequestClose }) => {
             type="text"
             name="description"
             value={formData.description}
-            onChange={handleInputChange}
+            onChange={handleTextChange}
             className="h-[7rem] rounded-[0.65rem] bg-[#CDCDCD95] text-[#373737] focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]"
           />
+          {descError && (
+            <p className="text-red-500 text-sm mt-1">{descError}</p>
+          )}
 
           <button
             type="submit"

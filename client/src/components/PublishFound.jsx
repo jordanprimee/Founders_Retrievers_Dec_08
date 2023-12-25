@@ -80,12 +80,35 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
     imageurl: null,
   });
 
+  const [descError, setDescError] = useState("");
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
+  const handleTextChange = (e) => {
+    const inputValue = e.target.value;
+
+    // Limit the input to 100 characters
+    const limitedText = inputValue.slice(0, 50);
+
+    // Update the state
+    setFormData({
+      ...formData,
+      description: limitedText,
+    });
+
+    // Check if the input exceeds the character limit
+    if (inputValue.length > 100) {
+      setError("Exceeded the character limit (100 characters)");
+    } else {
+      setError("");
+    }
+  };
+
+
   ///IMAGE////
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -166,7 +189,7 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
               <PlusYellow color="#FBE62E" /> I’VE FOUND
             </span>
             <button onClick={onRequestClose} className="flex justify-end ">
-              <Cancel size={12} color="#CDCDCD"/>
+              <Cancel size={12} color="#CDCDCD" />
             </button>
           </div>
 
@@ -272,8 +295,8 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
 
           <label
             htmlFor=""
-            className="self-start text-[0.9rem] mb-[0.01rem] justify-self-center place-items-center text-[#CDCDCD95]">
-          
+            className="self-start text-[0.9rem] mb-[0.01rem] justify-self-center place-items-center text-[#CDCDCD95]"
+          >
             Write notes/ description to others
           </label>
 
@@ -281,10 +304,12 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             type="text"
             name="description"
             value={formData.description}
-            onChange={handleInputChange}
+            onChange={handleTextChange}
             className="h-[7rem] rounded-[0.65rem] bg-[#CDCDCD95] text-[#373737] focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]"
           />
-
+          {descError && (
+            <p className="text-red-500 text-sm mt-1">{descError}</p>
+          )}
           <button
             type="submit"
             className="self-end text-center w-28 px-3 pb-2 text-[0.85rem]  text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[0.9rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"

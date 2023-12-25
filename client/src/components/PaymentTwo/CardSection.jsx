@@ -36,7 +36,7 @@ const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
       iconColor: "#fff",
-      color: "#3e3e3e",
+      color: "#ffffff95",
       fontSize: "16px",
       fontFamily: '"Open Sans", sans-serif',
       fontSmoothing: "antialiased",

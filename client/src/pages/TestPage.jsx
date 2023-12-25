@@ -16,6 +16,7 @@ import { SuccessfullyDeleted } from "../components/responseModals/SuccessfullyDe
 import { SuccessfullySignedIn } from "../components/responseModals/SuccessfullySignedIn";
 import { SuccessfullyUpdated } from "../components/responseModals/SuccessfullyUpdated";
 import { SuccessfullyUploaded } from "../components/responseModals/SuccessfullyUploaded";
+import Payment from "../components/PaymentTwo/Payment";
 Modal.setAppElement(document.getElementById("root"));
 
 export const TestPage = (isOpen, onRequestClose) => {
@@ -44,7 +45,8 @@ export const TestPage = (isOpen, onRequestClose) => {
         {/* <SuccessfullyDeleted isOpen={openModal} onRequestClose={closeModal} /> */}
         {/* <SuccessfullySignedIn isOpen={openModal} onRequestClose={closeModal} /> */}
         {/* <SuccessfullyUpdated isOpen={openModal} onRequestClose={closeModal} /> */}
-        <SuccessfullyUploaded isOpen={openModal} onRequestClose={closeModal} />
+        {/* <SuccessfullyUploaded isOpen={openModal} onRequestClose={closeModal} /> */}
+        <Pay isOpen={openModal} onRequestClose={closeModal} />
         {/* <FailedToSignIn isOpen={openModal} onRequestClose={closeModal} /> */}
         {/* <DeliveryAlertFound isOpen={openModal} onRequestClose={closeModal} /> */}
       </div>

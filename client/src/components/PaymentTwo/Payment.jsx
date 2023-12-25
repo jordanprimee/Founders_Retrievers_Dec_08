@@ -55,7 +55,7 @@ const Payment = ({ isOpen, onRequestClose }) => {
   const modalStyle = {
     overlay: {
       backgroundColor: "#ffffff10", // Set the overlay background color with transparency
-      zIndex: 5, // Set the z-index for the overlay
+      zIndex: 6002, // Set the z-index for the overlay
     },
   };
 
