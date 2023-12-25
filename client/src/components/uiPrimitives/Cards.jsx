@@ -5,7 +5,7 @@ import { NotSignedIn } from "../uiPrimitives/NotSignedIn";
 import { useModal } from "../../hooks/useContext/ModalContext";
 import { MainCardFound } from "../MainCardFound";
 import LostParrot from "../../assets/clips/LostParrot.png";
-import { DeliveryAlertFound } from "../DeliveryAlertFound";
+import { DeliveryAlertFound } from "../../components/uiPrimitives/DeliveryAlertFound";
 
 import { MineBtn } from "../uiPrimitives/MineBtn";
 import {
@@ -18,7 +18,7 @@ import {
   LinkIcon,
 } from "../../assets/icons/IconsSVGConst";
 import { Comment } from "../uiPrimitives/Comment";
-import { ConfirmContact } from "../uiPrimitives/ConfirmContact";
+import { ConfirmContactLost } from "./ConfirmContactLost";
 // import Payment from "../Payment";
 import { ConfirmContactFound } from "../uiPrimitives/ConfirmContactFound";
 
@@ -90,7 +90,7 @@ export const LostCard = ({
               <FoundItBtn />
             </button>
             {confirmContactIsOpen &&
-            <ConfirmContact
+            <ConfirmContactLost
               isOpen={confirmContactIsOpen}
               onRequestClose={closeModal}
             />
