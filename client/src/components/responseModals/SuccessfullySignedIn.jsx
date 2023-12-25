@@ -50,17 +50,17 @@ export const SuccessfullySignedIn = ({ isOpen, onRequestClose }) => {
   return (
     <>
       <Modal
-        className="absolute top-44 left-[30rem] flex flex-col align-center justify-center gap-4 p-8 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] "
+        className="flex flex-col align-center justify-center gap-4 p-8 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] absolute  bottom-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
         contentLabel="Not signed in Modal"
       >
         <button onClick={onRequestClose} className="flex justify-end">
-          <Cancel />
+          <Cancel size={12} color="#CDCDCD" />
         </button>
         <div className="self-center">
-          <Happy />
+          <Happy color="#18E074" />
         </div>
         <div className="text-[1.5rem] font-light text-[#ffffff95] text-wrap text-center">
           Welcome back{" "}
@@ -69,14 +69,26 @@ export const SuccessfullySignedIn = ({ isOpen, onRequestClose }) => {
           </span>{" "}
           !!
         </div>
-        <div className="text-start flex flex-col items-center text-[1rem] font-light text-[#ffffff95] text-wrap">
-          <span className="self-start pl-28">where to today !!{" "}</span>
-          <div className="flex flex-row">
-            <div className="pl-24 self-start border-r border-dotted border-[#ffffff85] h-24"></div>
-            <ul >
-              <Link to='/'><li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-4 p-2">HOME PAGE</li></Link>
-              <Link to='/feedpage'><li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-4 p-2">FEED PAGE</li></Link>
-              <Link to='/profilepage'><li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-4 p-2">MY PROFILE</li></Link>
+        <div className="text-start flex flex-col justify-center items-center text-[1rem] font-light text-[#ffffff95] text-wrap">
+          <span className="mt-4 mb-4">where to today !! </span>
+          <div className="flex flex-col mb-4">
+            {/* <div className="pl-24 self-start border-r border-dotted border-[#ffffff85] h-24"></div> */}
+            <ul className="flex flex-row">
+              <Link to="/">
+                <li className="text-sm text-[#FBE62E] border-l-[0.08rem] border-[#FBE62E] pl-2 p-2">
+                  HOME PAGE
+                </li>
+              </Link>
+              <Link to="/feedpage">
+                <li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-2 p-2">
+                  FEED PAGE
+                </li>
+              </Link>
+              <Link to="/profilepage">
+                <li className="text-sm hover:text-[#FBE62E] hover:border-l-[0.08rem] border-[#FBE62E] pl-2 p-2">
+                  MY PROFILE
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

@@ -15,17 +15,18 @@ export const FailedToUpdate = ({ isOpen, onRequestClose }) => {
   return (
     <>
       <Modal
-        className="absolute top-44 left-[30rem] flex flex-col align-center justify-center gap-8 p-8 bg-[#373737] rounded-[1rem] w-[34rem] h-[18rem] "
+        className="flex flex-col align-center justify-center gap-8 p-8 bg-[#373737] rounded-[1rem] w-[34rem] h-[15rem] absolute  bottom-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
         contentLabel="Not signed in Modal"
       >
         <button onClick={onRequestClose} className="flex justify-end">
-          <Cancel />
+          <Cancel size={12} color="#CDCDCD" />
         </button>
-        <div className="self-center">
-        <svg
+        <div className="self-center relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E83434] opacity-75"></span>
+          <svg
             width="40"
             height="40"
             viewBox="0 0 40 40"
@@ -47,8 +48,8 @@ export const FailedToUpdate = ({ isOpen, onRequestClose }) => {
             />
           </svg>
         </div>
-        <div className="text-[1rem] font-light text-[#fff] text-wrap text-center">
-        Failed to update. Try again later.
+        <div className="text-[1rem] mb-12 font-light text-[#fff] text-wrap text-center">
+          Failed to update. Try again later.
         </div>
 
         {/* <button onClick={onRequestClose} className="self-center" >

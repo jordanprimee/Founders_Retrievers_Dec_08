@@ -15,16 +15,16 @@ export const SuccessfullyUpdated = ({ isOpen, onRequestClose }) => {
   return (
     <>
       <Modal
-        className="absolute top-44 left-[30rem] flex flex-col align-center justify-center gap-8 p-12 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] "
+        className="flex flex-col align-center justify-center gap-8 p-12 bg-[#373737] rounded-[1rem] w-[34rem] h-[16rem] absolute  bottom-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
         contentLabel="Not signed in Modal"
       >
         <button onClick={onRequestClose} className="flex justify-end">
-          <Cancel />
+          <Cancel size={12} color="#CDCDCD" />
         </button>
-        <div className="self-center">
+        <div className="animate-bounce self-center">
           <svg
             width="40"
             height="40"
@@ -41,7 +41,7 @@ export const SuccessfullyUpdated = ({ isOpen, onRequestClose }) => {
             />
           </svg>
         </div>
-        <div className="text-[2rem] font-light text-[#fff] text-wrap text-center">
+        <div className="text-[2rem] mb-12 font-light text-[#fff] text-wrap text-center">
           Successfully updated
         </div>
 

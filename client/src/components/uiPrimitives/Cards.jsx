@@ -18,7 +18,7 @@ import {
   LinkIcon,
 } from "../../assets/icons/IconsSVGConst";
 import { Comment } from "../uiPrimitives/Comment";
-import { ConfirmContact } from "./ConfirmContactLost";
+import { ConfirmContactLost } from "./ConfirmContactLost";
 // import Payment from "../Payment";
 import { ConfirmContactFound } from "../uiPrimitives/ConfirmContactFound";
 
@@ -90,7 +90,7 @@ export const LostCard = ({
               <FoundItBtn />
             </button>
             {confirmContactIsOpen &&
-            <ConfirmContact
+            <ConfirmContactLost
               isOpen={confirmContactIsOpen}
               onRequestClose={closeModal}
             />

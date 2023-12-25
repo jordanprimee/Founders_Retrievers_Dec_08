@@ -5,17 +5,15 @@ import { Cancel } from "../../assets/icons/IconsSVGConst";
 ////////JWT///////////
 import { UseUser } from "../../hooks/useContext/UserContext";
 import { useParams } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 import { SuccessfullyUpdated } from "../responseModals/SuccessfullyUpdated";
 import { FailedToUpdate } from "../responseModals/FailedToUpdate";
 
-
 Modal.setAppElement(document.getElementById("root"));
 
-
 const UpdateUserDataModal = ({ isOpen, onRequestClose }) => {
-
-  const [successfullyUpdatedIsOpen, setSuccessfullyUpdatedIsOpen] = useState(false);
+  const [successfullyUpdatedIsOpen, setSuccessfullyUpdatedIsOpen] =
+    useState(false);
   const [failedToUpdateIsOpen, setFailedToUpdateIsOpen] = useState(false);
   const openSuccessfullyUpdated = () => {
     setSuccessfullyUpdatedIsOpen(true);
@@ -29,7 +27,6 @@ const UpdateUserDataModal = ({ isOpen, onRequestClose }) => {
     setFailedToUpdateIsOpen(false);
   };
 
-
   const modalStyle = {
     overlay: {
       backgroundColor: "#ffffff50",
@@ -41,7 +38,6 @@ const UpdateUserDataModal = ({ isOpen, onRequestClose }) => {
   const defaultImageURL =
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAh0lEQVR42mP4z/CfPwMDAzMDP//PAAmgsHk1Ab0AAAAASUVORK5CYII=";
 
-
   const [userData, setUserData] = useState({
     user_id: "",
     username: "",
@@ -52,63 +48,59 @@ const UpdateUserDataModal = ({ isOpen, onRequestClose }) => {
     password: "",
   });
 
-  
   const { user } = UseUser();
-  const [cookies] = useCookies(['userToken']);
+  const [cookies] = useCookies(["userToken"]);
 
   const [formData, setFormData] = useState({
-    username:'',
-    email:'',
-    phonenumber:'',
-    country:'',
-    city:'',
-    password:'',
+    username: "",
+    email: "",
+    phonenumber: "",
+    country: "",
+    city: "",
+    password: "",
   });
-  
+
   useEffect(() => {
-      const fetchUserData = async () => {
-        try {
-          if (user) {
-            const token = cookies.userToken || null;
-            axios.defaults.headers.common['authorization'] = `${token}`;
-            const response = await axios.get(`http://localhost:3000/profile`);
-            // console.log(response.data)
-            setUserData(response.data[0]);
-          }
-                     
-          } catch (error) {
+    const fetchUserData = async () => {
+      try {
+        if (user) {
+          const token = cookies.userToken || null;
+          axios.defaults.headers.common["authorization"] = `${token}`;
+          const response = await axios.get(`http://localhost:3000/profile`);
+          // console.log(response.data)
+          setUserData(response.data[0]);
+        }
+      } catch (error) {
         console.error("Error fetching user data:", error);
       }
-   
     };
     fetchUserData();
   }, [user, cookies]);
 
+  useEffect(() => {
+    if (userData) {
+      setFormData({
+        username: userData.username || "",
+        email: userData.email || "",
+        phonenumber: userData.phonenumber || "",
+        country: userData.country || "",
+        city: userData.city || "",
+        password: userData.password || "",
+      });
+    }
+  }, [userData]);
 
-useEffect(()=>{
-if(userData){
-  setFormData({
-    username: userData.username || '',
-    email: userData.email || '',
-    phonenumber: userData.phonenumber || '',
-    country: userData.country || '',
-    city: userData.city || '',
-    password: userData.password || '',
-  })
-}
-}, [userData])
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-const handleInputChange = (e) => {
-  const {name, value} = e.target;
-  setFormData({
-    ...formData,
-    [name]:value,
-  });
-};
-  
   const handleUpdateInfo = async (e) => {
     e.preventDefault();
-    const updatedData ={
+    const updatedData = {
       username: formData.username,
       email: formData.email,
       phonenumber: formData.phonenumber,
@@ -120,155 +112,164 @@ const handleInputChange = (e) => {
     try {
       const token = cookies.userToken || null;
       // axios.defaults.headers.common['authorization'] = `${token}`;
-      axios.defaults.headers.common['authorization'] = `${token}`;
+      axios.defaults.headers.common["authorization"] = `${token}`;
 
-      const response = await axios.put(`http://localhost:3000/user`, updatedData);
+      const response = await axios.put(
+        `http://localhost:3000/user`,
+        updatedData
+      );
       setSuccessfullyUpdatedIsOpen(true);
-
+      onRequestClose();
     } catch (error) {
       console.error("Error fetching user data:", error);
       setFailedToUpdateIsOpen(true);
-
     }
   };
-    
 
   return (
     <>
-    {successfullyUpdatedIsOpen && (
-        <SuccessfullyUpdated isOpen={openSuccessfullyUpdated} onRequestClose={closeModal} />
-      )}
-     {failedToUpdateIsOpen && (
-        <FailedToUpdate  isOpen={openFailedToUpload} onRequestClose={closeModal}/>
-      )}
-    <Modal
-      className="absolute top-12 left-[30rem]  gap-8 p-12 bg-[#373737] rounded-[1rem] w-[38rem] h-[40rem] "
-      isOpen={isOpen}
-      style={modalStyle}
-      onRequestClose={onRequestClose}
-      contentLabel="Update User Info Modal"
-    >
-      <div className="flex flex-col">
-        <button onClick={onRequestClose} className="self-end">
-          <Cancel />
-        </button>
-        <div className="self-center justify-self-center">
-          <svg
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="20" cy="20" r="19.5" stroke="#E83434" />
-            <path
-              d="M20 11V22"
-              stroke="#E83434"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M20 27V29"
-              stroke="#E83434"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
-      </div>
-      <div className="text-[2.25rem] text-center font-extralight text-[#fff]">
-        Update My Info
-      </div>
-
-      <form className="flex flex-col justify-center items-center" encType="multipart/form-data" onSubmit={handleUpdateInfo}>
-        <label htmlFor="">Image</label>
-        <input
-          type="file"
-          // onChange={handleImageChange}
-          // accept="image/*"
-          src={defaultImageURL}
-          className="bg-[#86868673] p-1 mb-1 rounded-full w-[5rem]"
-          // onChange={(e) => setEditedImage(e.target.files[0])}
+      {successfullyUpdatedIsOpen && (
+        <SuccessfullyUpdated
+          isOpen={openSuccessfullyUpdated}
+          onRequestClose={closeModal}
         />
+      )}
+      {failedToUpdateIsOpen && (
+        <FailedToUpdate
+          isOpen={openFailedToUpload}
+          onRequestClose={closeModal}
+        />
+      )}
+      <Modal
+        className="gap-8 p-12 bg-[#373737] rounded-[1rem] w-[38rem] h-[40rem] absolute  bottom-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
+        isOpen={isOpen}
+        style={modalStyle}
+        onRequestClose={onRequestClose}
+        contentLabel="Update User Info Modal"
+      >
+        <div className="flex flex-col">
+          <button onClick={onRequestClose} className="self-end">
+            <Cancel size={12} color="#CDCDCD" />
+          </button>
+          <div className="self-center justify-self-center">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="20" cy="20" r="19.5" stroke="#E83434" />
+              <path
+                d="M20 11V22"
+                stroke="#E83434"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+              <path
+                d="M20 27V29"
+                stroke="#E83434"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className="text-[2.25rem] text-center font-extralight text-[#fff]">
+          Update My Info
+        </div>
 
-        {/* <img
+        <form
+          className="flex flex-col justify-center items-center"
+          encType="multipart/form-data"
+          onSubmit={handleUpdateInfo}
+        >
+          <label htmlFor="">Image</label>
+          <input
+            type="file"
+            // onChange={handleImageChange}
+            // accept="image/*"
+            src={defaultImageURL}
+            className="bg-[#86868673] p-1 mb-1 rounded-full w-[5rem]"
+            // onChange={(e) => setEditedImage(e.target.files[0])}
+          />
+
+          {/* <img
           src={userData.profileImage || defaultImageURL}
           alt="userpic"
           className="bg-[#000] row-span-2 w-10 h-10 rounded-full"
         /> */}
 
-        <label htmlFor="">Name</label>
-        <input
-          type="text"
-          className="bg-[#ffffff70] p-1 mb-1 rounded-[0.25rem] w-[10.5rem]"
-          onChange={handleInputChange}
-          value={formData.username}
-          name='username'
-        />
+          <label htmlFor="">Name</label>
+          <input
+            type="text"
+            className="bg-[#ffffff70] p-1 mb-1 rounded-[0.25rem] w-[10.5rem]"
+            onChange={handleInputChange}
+            value={formData.username}
+            name="username"
+          />
 
-        <label htmlFor="">Country</label>
-        <input
-          type="text"
-          className="bg-[#ffffff70] p-1 rounded-[0.25rem] w-[10.5rem]"
-          onChange={handleInputChange}
-          value={formData.country}
-          name="country"
-        />
+          <label htmlFor="">Country</label>
+          <input
+            type="text"
+            className="bg-[#ffffff70] p-1 rounded-[0.25rem] w-[10.5rem]"
+            onChange={handleInputChange}
+            value={formData.country}
+            name="country"
+          />
 
-        <label htmlFor="">City</label>
-        <input
-          type="text"
-          className="bg-[#ffffff70] p-1 rounded-[0.25rem] w-[10.5rem]"
-          onChange={handleInputChange}
-          value={formData.city}
-          name="city"
-        />
+          <label htmlFor="">City</label>
+          <input
+            type="text"
+            className="bg-[#ffffff70] p-1 rounded-[0.25rem] w-[10.5rem]"
+            onChange={handleInputChange}
+            value={formData.city}
+            name="city"
+          />
 
-        <label htmlFor="">Email</label>
-        <input
-          type="text"
-          className="bg-[#ffffff70] p-1 rounded-[0.25rem] "
-          onChange={handleInputChange}
-          value={formData.email}
-          name="email"
-        />
+          <label htmlFor="">Email</label>
+          <input
+            type="text"
+            className="bg-[#ffffff70] p-1 rounded-[0.25rem] "
+            onChange={handleInputChange}
+            value={formData.email}
+            name="email"
+          />
 
-        <label htmlFor="">Phone Number</label>
-        <input
-          type="text"
-          className="bg-[#ffffff70] p-1 rounded-[0.25rem] "
-          onChange={handleInputChange}
-          value={formData.phonenumber}
-          name="phonenumber"
-        />
+          <label htmlFor="">Phone Number</label>
+          <input
+            type="text"
+            className="bg-[#ffffff70] p-1 rounded-[0.25rem] "
+            onChange={handleInputChange}
+            value={formData.phonenumber}
+            name="phonenumber"
+          />
 
-        <label htmlFor="" className="text-[#000] font-light text-[0.9rem] ">
-          Password
-        </label>
-        <input
-          type="password"
-          placeholder="set new password"
-          className="bg-[#ffffff70] p-1 rounded-[0.25rem] "
-          onChange={handleInputChange}
-          value={formData.password}
-          name='password'
-        />
+          <label htmlFor="" className="text-[#000] font-light text-[0.9rem] ">
+            Password
+          </label>
+          <input
+            type="password"
+            placeholder="set new password"
+            className="bg-[#ffffff70] p-1 rounded-[0.25rem] "
+            onChange={handleInputChange}
+            value={formData.password}
+            name="password"
+          />
 
-        <button
-          type="submit"
-          className="text-center mt-4 text-[#fff] font-light text-[0.9rem] border border-[#fff]  hover:bg-[#ffffff50] rounded-[0.5rem] p-1 w-[10rem]"
-        >
-          Save Changes
-        </button>
-      </form>
-    </Modal>
+          <button
+            type="submit"
+            className="text-center mt-4 text-[#fff] font-light text-[0.9rem] border border-[#fff]  hover:bg-[#ffffff50] rounded-[0.5rem] p-1 w-[10rem]"
+          >
+            Save Changes
+          </button>
+        </form>
+      </Modal>
     </>
   );
 };
 
 export default UpdateUserDataModal;
-
-
 
 ////////////////////old/////////////////////////////
 // import React, { useState, useEffect } from "react";
@@ -279,7 +280,6 @@ export default UpdateUserDataModal;
 // import { UseUser } from "../../hooks/useContext/UserContext";
 // import { useParams } from "react-router-dom";
 // import { useCookies } from 'react-cookie';
-
 
 // Modal.setAppElement(document.getElementById("root"));
 
@@ -294,7 +294,6 @@ export default UpdateUserDataModal;
 
 //   const defaultImageURL =
 //     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAh0lEQVR42mP4z/CfPwMDAzMDP//PAAmgsHk1Ab0AAAAASUVORK5CYII=";
-
 
 //   const [userData, setUserData] = useState({
 //     user_id: "",
@@ -329,24 +328,24 @@ export default UpdateUserDataModal;
 //             // console.log(response.data)
 //             setUserData(response.data[0]);
 //           }
-                     
+
 //           } catch (error) {
 //         console.error("Error fetching user data:", error);
 //       }
-   
+
 //     };
 //     fetchUserData();
 //   }, [user, cookies]);
 
 //   const handleUpdateInfo = async (e) => {
 //     e.preventDefault();
-  
+
 //     try {
 //       const token = cookies.userToken || null;
 //       axios.defaults.headers.common['authorization'] = `${token}`;
 
 //       const formData = new FormData();
-     
+
 //       // Append the updated user data
 //       if (editedUsername !== null){
 //       formData.append("username", editedUsername || userData.username);}
@@ -355,24 +354,23 @@ export default UpdateUserDataModal;
 //       formData.append("email", editedEmail || userData.email);
 //       formData.append("phonenumber", editedPhoneNumber || userData.phonenumber);
 //       formData.append("password", editedPassword || userData.password);
-  
+
 //       // // Append the updated image if available
 //       // if (editedImage) {
 //       //   formData.append("image", editedImage, editedImage.name);
 //       // }
-  
+
 //       const response = await axios.put(
 //         `http://localhost:3000/user`,
 //         formData
 //       );
-  
+
 //       console.log("FormData:", formData); // Log FormData before making the request
 
 //       console.log("Update successful", response.data);
-  
+
 //       // Update the state only after a successful response
-    
-  
+
 //       // Clear the edited image state
 //       if (response.status === 200) {
 //         console.log('Form submitted successfully!');
@@ -383,7 +381,7 @@ export default UpdateUserDataModal;
 //       console.error('Error:', error);
 //     }
 //   };
-  
+
 //   const handleImageChange = (e) => {
 //     const selectedImage = e.target.files[0];
 //     setEditedImage(selectedImage);
