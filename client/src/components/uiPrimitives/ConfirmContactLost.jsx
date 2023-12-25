@@ -24,7 +24,7 @@ import Pay from "../PaymentTwo/Pay"
 import { DeliveryAlertFound } from "../DeliveryAlertFound";
 Modal.setAppElement(document.getElementById("root"));
 
-export const ConfirmContact = ({ isOpen, onRequestClose }) => {
+export const ConfirmContactLost = ({ isOpen, onRequestClose }) => {
   const { modalIsOpen, openModal } = useModal();
 
   const [deliveryAlertIsOpen, setDeliveryAlertIsOpen] = useState(false);

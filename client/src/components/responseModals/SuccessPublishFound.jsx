@@ -8,18 +8,18 @@ import { ConfirmContactFound } from "../uiPrimitives/ConfirmContactFound";
 Modal.setAppElement(document.getElementById("root"));
 
 export const SuccessPublishFound = ({ isOpen, onRequestClose }) => {
-    const[openModal, closeModal] = useState(false);
+  const [openModal, closeModal] = useState(false);
 
   const modalStyle = {
     overlay: {
       backgroundColor: "#ffffff05", // Set the overlay background color with transparency
-      zIndex: 5, // Set the z-index for the overlay
+      zIndex: 6006, // Set the z-index for the overlay
     },
   };
   return (
     <>
       <Modal
-        className="absolute top-44 left-[30rem] flex flex-col align-center justify-center gap-8 p-12 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] "
+        className="flex flex-col align-center justify-center gap-8 p-12 bg-[#373737] rounded-[1rem] w-[34rem] h-[24rem] absolute  bottom-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
@@ -49,14 +49,11 @@ export const SuccessPublishFound = ({ isOpen, onRequestClose }) => {
           Successfully uploaded =)
         </div>
 
-        <button
-          onClick={openModal}
-          className="self-center mt-8 self-center text-center w-52 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-        >
-          Next
-        </button>
-        <ConfirmContactFound isOpen={openModal} onRequestClose={closeModal}/>
-        
+        <Link to='/' className="self-center ">
+          <button className="mt-8 text-center w-52 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+            Go to home page
+          </button>
+        </Link>
       </Modal>
     </>
   );

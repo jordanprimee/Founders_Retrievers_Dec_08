@@ -4,7 +4,7 @@ import { Cancel, PlusYellow } from "../assets/icons/IconsSVGConst";
 import { useModal } from "../../src/hooks/useContext/ModalContext";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { ConfirmContact } from "./uiPrimitives/ConfirmContact";
+import { ConfirmContact } from "./uiPrimitives/ConfirmContactLost";
 import { SuccessfullyUploaded } from "./responseModals/SuccessfullyUploaded";
 import { FailedToUpload } from "./responseModals/FailedToUpload";
 import { SuccessPublishFound } from "./responseModals/SuccessPublishFound";
@@ -113,6 +113,7 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
 
       if (response.status === 200) {
         onRequestClose();
+        setConfirmContactIsOpen(true);
 
         // setSuccessfullyUploadedIsOpen(true);
         // setFailedToUploadIsOpen(true);
@@ -124,7 +125,6 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
       }
     } catch (error) {
       console.error("Error:", error);
-      onRequestClose();
       setFailedToUploadIsOpen(true);
     }
   };
@@ -151,7 +151,7 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
       )}
 
       <Modal
-        className=" absolute left-[25rem]  p-12 bg-[#373737] rounded-[1rem] w-[50rem] h-[45rem] "
+        className="  p-12 bg-[#373737] rounded-[1rem] w-[50rem] h-[42rem] absolute  bottom-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
@@ -166,11 +166,11 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
               <PlusYellow color="#FBE62E" /> I’VE FOUND
             </span>
             <button onClick={onRequestClose} className="flex justify-end ">
-              <Cancel />
+              <Cancel size={12} color="#CDCDCD"/>
             </button>
           </div>
 
-          <label className="self-start text-[0.85rem] mb-1 justify-self-center place-items-center text-[#CDCDCD]">
+          <label className="self-start text-[0.85rem] mb-[0.01rem] justify-self-center place-items-center text-[#CDCDCD]">
             Please fill the following information regarding the belonging you
             found{" "}
           </label>
@@ -182,18 +182,18 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             value={formData.title}
             onChange={handleInputChange}
             placeholder="What did you find !!"
-            className="placeholder-[#CDCDCD84] mb-4 font-light"
+            className="placeholder-[#CDCDCD95] text-[0.9rem] focus:outline-none  focus:ring-1 focus:ring-[#ffffff85] font-light"
             required
           />
 
-          <label className="self-start text-[1rem] mb-1 justify-self-center place-items-center text-[#CDCDCD95]">
+          <label className="self-start text-[0.9rem] mb-[0.01rem] justify-self-center place-items-center text-[#CDCDCD95]">
             Under what category does it fall !
           </label>
 
           <select
             name="category"
             id=""
-            className="w-36 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
+            className="w-36  p-1 text-[0.9rem] rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
             onChange={handleInputChange}
           >
             <option value="" disabled selected className="bg-[#373737] ">
@@ -210,7 +210,7 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             ))}
           </select>
 
-          <label className="self-start text-[1rem] mb-1 justify-self-center place-items-center text-[#CDCDCD95]">
+          <label className="self-start text-[0.9rem] mb-[0.01rem] justify-self-center place-items-center text-[#CDCDCD95]">
             Where and when did you find it !
           </label>
 
@@ -218,7 +218,7 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             <select
               name="country"
               id=""
-              className="w-28 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
+              className="w-28  p-1 text-[0.9rem] rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
               onChange={handleInputChange}
               required
             >
@@ -232,7 +232,7 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             <select
               name="city"
               id=""
-              className="w-24 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
+              className="w-24  p-1 text-[0.9rem] rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
               onChange={handleInputChange}
               required
             >
@@ -251,17 +251,17 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
               name="date_found"
               value={formData.date_found}
               onChange={handleInputChange}
-              className="w-36 mb-4 p-2  rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
+              className="w-36  p-1 text-[0.9rem] rounded-md focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]  bg-transparent text-[#CDCDCD50]"
               required
             />
           </label>
 
-          <label className="self-start text-[1rem] mb-1 justify-self-center place-items-center text-[#CDCDCD95]">
+          <label className="self-start text-[0.9rem] mb-[0.01rem] justify-self-center place-items-center text-[#CDCDCD95]">
             Attach images of the item you found
           </label>
           {/* ///IMAGE//// */}
           <input
-            className="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-[#ffffff85] bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+            className="relative m-0 text-[0.8rem] block w-full min-w-0 flex-auto rounded rounded-md border border-solid border-[#ffffff85] bg-clip-padding px-3 py-[0.02rem] text-base font-normal text-[#CDCDCD50] transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-[#CDCDCD75] file:px-3 file:py-[0.32rem] file:text-[#373737] file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-[#fff] focus:text-[#CDCDCD95] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
             type="file"
             // id="image"
             // name="image"
@@ -272,8 +272,8 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
 
           <label
             htmlFor=""
-            className="self-start text-[0.85rem] mb-1 justify-self-center place-items-center text-[#CDCDCD55]"
-          >
+            className="self-start text-[0.9rem] mb-[0.01rem] justify-self-center place-items-center text-[#CDCDCD95]">
+          
             Write notes/ description to others
           </label>
 
@@ -282,12 +282,12 @@ export const PublishFound = ({ isOpen, onRequestClose }) => {
             name="description"
             value={formData.description}
             onChange={handleInputChange}
-            className="h-[7rem] rounded-[0.65rem] bg-[#CDCDCD95]"
+            className="h-[7rem] rounded-[0.65rem] bg-[#CDCDCD95] text-[#373737] focus:outline-none  focus:ring-1 focus:ring-[#ffffff85]"
           />
 
           <button
             type="submit"
-            className="self-end text-center w-28 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="self-end text-center w-28 px-3 pb-2 text-[0.85rem]  text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[0.9rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           >
             Publish
           </button>

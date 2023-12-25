@@ -5,6 +5,8 @@ import { useModal } from "../../src/hooks/useContext/ModalContext";
 import Modal from "react-modal";
 import Pay from "../components/PaymentTwo/Pay";
 import CheckoutForm from "../components/PaymentTwo/CheckOutForm";
+import { SuccessPublishFound } from "../components/responseModals/SuccessPublishFound";
+import { DeliveryAlertFound } from "../components/uiPrimitives/DeliveryAlertFound";
 Modal.setAppElement(document.getElementById("root"));
 
 export const TestPage = (isOpen, onRequestClose) => {
@@ -24,9 +26,9 @@ export const TestPage = (isOpen, onRequestClose) => {
     <>
       <div className="flex flex-col gap-40">
       <br/>
-      <Pay isOpen={openModal} onRequestClose={closeModal}/>
-      {/* <ConfirmContactFound isOpen={openModal} onRequestClose={closeModal} /> */}
-
+      {/* <Pay isOpen={openModal} onRequestClose={closeModal}/> */}
+      <ConfirmContactFound isOpen={openModal} onRequestClose={closeModal} />
+      {/* <DeliveryAlertFound isOpen={openModal} onRequestClose={closeModal} /> */}
       </div>
     </>
   );
