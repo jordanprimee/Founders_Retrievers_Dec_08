@@ -14,7 +14,6 @@ import Paper from "../src/Paper.png";
 import { HomePage } from "./pages/HomePage";
 import { FixedFooter } from "./components/FixedFooter";
 import { ModalProvider } from "./hooks/useContext/ModalContext";
-import { Test } from "./pages/Test";
 import { MainCardFound } from "./components/MainCardFound";
 import { UseUser, UserProvider } from "./hooks/useContext/UserContext";
 
@@ -31,6 +30,7 @@ import { useCookies } from "react-cookie";
 import { Cookies } from 'react-cookie';
 import axios from 'axios';
 import Payment from "./components/PaymentTwo/Payment";
+import { TestPage } from "./pages/TestPage";
 
 const cookies = new Cookies();
 
@@ -68,13 +68,13 @@ function App() {
               />
               <Route path="/aboutus" element={<AboutUs />} />
               <Route path="/contactus" element={<ContactUs />} />
-              <Route path="/test" element={<Test />} />
               <Route path="/payment" element={<Payment />} />
               <Route
                 path="/found/:id"
                 element={user ? (<MainCardFound />) : (<Navigate to="/signin" />)}
               />
               <Route path="*" element={<NotFound />} />
+              <Route path="/test" element={<TestPage />} />
             </Routes>
             <FixedFooter />
             <Footer />

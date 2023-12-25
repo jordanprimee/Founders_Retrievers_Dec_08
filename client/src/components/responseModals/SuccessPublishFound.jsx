@@ -46,7 +46,7 @@ export const SuccessPublishFound = ({ isOpen, onRequestClose }) => {
           </svg>
         </div>
         <div className="text-[2rem] font-light text-[#fff] text-wrap text-center">
-          Successfully uploaded, please wait for admin approval =)
+          Successfully uploaded =)
         </div>
 
         <button

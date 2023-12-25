@@ -1,0 +1,53 @@
+/* styles.css */
+
+@keyframes scale500to100 {
+    0% {
+      transform: translateY(-150px) scale(5);
+      opacity: 0;
+    }
+    20% {
+      transform: translateY(-100px) scale(4);
+      opacity: 0.5;
+    }
+    40% {
+      transform: translateY(-60px) scale(3);
+      opacity: 0.75;
+    }
+    60% {
+      transform: translateY(-40px) scale(2);
+      opacity: 0.75;
+    }
+    80% {
+      transform: translateY(-20px) scale(1.5);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply the animation only to the image wrapper */
+  .image-wrapper {
+    animation: scale500to100 700ms ease-in-out 500ms; /* Increased duration for a smoother effect */
+  }
+  
+  /* Other classes for the transition */
+  .drop-in-enter {
+    opacity: 0;
+  }
+  
+  .drop-in-enter-active {
+    opacity: 1;
+  }
+  
+  .drop-in-exit {
+    opacity: 1;
+  }
+  
+  .drop-in-exit-active {
+    opacity: 0;
+    transform: translateY(100px) scale(1);
+    transition: opacity 700ms, transform 700ms;
+  }
+  

@@ -42,7 +42,7 @@ export const LostCard = ({
     <div key={user_id} className="flex flex-col">
       <div className="flex flex-col">
         <span className="flex flex-row gap-4 inline-block pb-2 text-[#E83434] bg-none text-[0.7rem] font-semibold rounded-[0.65rem] text-xs py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-          <Minus /> I’VE LOST {id}
+          <Minus /> I’VE LOST 
         </span>
         <div className="p-8 justify-stretch grid grid-col-1 grid-flow-row  bg-[#373737] rounded-[1.25rem] w-[20rem] h-[36rem] ">
           <div className="flex flex-col">
@@ -85,7 +85,7 @@ export const LostCard = ({
             <Comment />
           </div>
 
-          <div className="flex flex-row gap-[4.75rem] items-center">
+          {/* <div className="flex flex-row gap-[4.75rem] items-center">
             <button onClick={openConfirmContact}>
               <FoundItBtn />
             </button>
@@ -98,7 +98,7 @@ export const LostCard = ({
             <div className="pl-8">
               <Share />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
@@ -171,11 +171,11 @@ export const FoundCard = ({
           <Comment />
         </div>
 
-        <div className="flex flex-row gap-[4.75rem] items-center">
-          {/* <button 
+        {/* <div className="flex flex-row gap-[4.75rem] items-center">
+          <button 
             onClick={DeliveryAlertFound} >
             <MineBtn />
-            </button> */}
+            </button>
 
           <button 
           onClick={openConfirmContactFound}
@@ -186,7 +186,7 @@ export const FoundCard = ({
           <div className="pl-8">
             <Share />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

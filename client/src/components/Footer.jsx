@@ -5,24 +5,24 @@ import Logo from '../assets/clips/Logo.png'
 export const Footer = () => {
   return (
     
-<footer className="bg-transparent  dark:bg-gray-900 ">
-    <div className="w-full max-w-screen-xl mx-auto  md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-around">
-            <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-[#000] sm:mb-0 dark:text-gray-400">
+<footer className="bg-transparent  ">
+    <div className="w-full max-w-screen-xl mx-auto  lg:py-8 md:py-8 sm:py-8 py-0">
+        <div className="sm:flex sm:items-center sm:justify-around ">
+            <ul className="flex  items-center justify-center mb-6 gap-6 text-sm font-medium text-[#000] lg:scale-100 sm:scale-75 md:scale-90 scale-50 dark:text-gray-400">
                 <li>
-                    <Link to='/'  className="text-[0.8rem] font-bold  mr-4 hover:underline md:mr-6 ">HOME</Link>
+                    <Link to='/'  className="text-[0.8rem] font-bold   hover:underline  ">HOME</Link>
                 </li>
                 <li>
-                    <Link to='/aboutus' className="text-[0.8rem] font-bold  mr-4 hover:underline md:mr-6">ABOUT US</Link>
+                    <Link to='/aboutus' className="text-[0.8rem] font-bold  hover:underline">ABOUT US</Link>
                 </li>
                 {/* <li>
                     <Link to='/' className="text-[0.8rem] font-bold  mr-4 hover:underline md:mr-6">BELONGINGS</Link>
                 </li> */}
                     <Link to="/" className="flex items-center mb-4 sm:mb-0">
-                      <img src={Logo} className="h-12 mr-7 ml-6" alt="Flowbite Logo" />
+                      <img src={Logo} className="lg:h-12 md:h-12 sm:h-12  mr-7 ml-6" alt="Logo" />
                     </Link>
                 <li>
-                    <Link to='/contactus' className="text-[0.8rem] font-bold  mr-4 hover:underline md:mr-6">GET IN TOUCH</Link>
+                    <Link to='/contactus' className="text-[0.8rem] font-bold   hover:underline ">GET IN TOUCH</Link>
                 </li>
                 {/* <li>
                     <Link to='/' className="text-[0.8rem] font-bold  mr-4 hover:underline md:mr-6 ">HELP CENTER</Link>
@@ -32,9 +32,9 @@ export const Footer = () => {
                 </li>
             </ul>
         </div>
-        <hr className="my-6 border-[#86868675] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <div className='flex justify-between '>
-          <ul className='flex flex-row justify-between gap-4'>
+        <hr className="my-1 sm:my-6 md:my-6 border-[#86868675] border-dashed   dark:border-gray-700 lg:my-8" />
+        <div className='flex justify-between md:my-6 sm:my-5  '>
+          <ul className='flex lg:flex-row md:flex-row sm:flex-row flex-col-reverse justify-between lg:gap-4 md:gap-4 sm:gap-4 gap-0 lg:scale-100 sm:scale-75 md:scale-90 scale-50'>
             <li>
               <span className="justify-self-start block text-sm text-[#000] sm:text-center dark:text-gray-400">© 2023 <Link to="/" className="hover:underline">Founders Retrievers™</Link></span>
             </li>
@@ -42,10 +42,10 @@ export const Footer = () => {
               <span className="justify-self-start block text-sm text-[#000] sm:text-center dark:text-gray-400"><Link to="/" className="hover:underline">Terms of use</Link></span>
             </li>
           </ul>
-          <ul class="flex flex-wrap items-center mb-6 gap-6">
-            <li className='text-sm font-semibold sm:text-center text-[#000] '>Connect:</li>
+          <ul class="lg:scale-100 sm:scale-75 md:scale-90 scale-50 flex lg:flex-row md:flex-row  sm:flex-row  sm:flex-wrap lg:flex-wrap md:flex-wrap flex-col sm:items-center gap-6">
+            <li className='text-sm font-semibold sm:text-center text-start  text-[#000] '>Connect:</li>
             <li className='flex flex-row gap-2'>
-              <Link to='/' className='text-sm text-[#000] sm:text-center dark:text-gray-400 hover:underline' >Facebook</Link>
+              <Link to='/' className='text-sm text-[#000] sm:text-center text-start  dark:text-gray-400 hover:underline' >Facebook</Link>
               <svg width="18" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                  <path d="M9.89231 21V13.2538H7V9.94249H9.89231C9.89231 6.42419 9.89231 2.07805 17 3.17198V6.03983C13.9231 5.71462 13.6154 6.66071 13.6154 9.94249H17L16.3231 13.2538H13.6154V21" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>

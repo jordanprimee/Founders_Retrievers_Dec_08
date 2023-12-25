@@ -174,7 +174,7 @@ function CheckoutForm({ stripe, elements }) {
 
         <form onSubmit={handleSubmit} className="flex flex-col">
           <CardSection />
-          <button className="w-32 self-center px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737] rounded-lg text-sm  py-2 mt-16 mb-8 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+          <button className="w-32 self-center px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737] rounded-lg text-sm  py-2 mt-24 mb-8 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
             Buy Now
           </button>
         </form>

@@ -17,6 +17,7 @@ import { MainCardFound } from "../components/MainCardFound";
 import { ConfirmContact } from "../components/uiPrimitives/ConfirmContact";
 import { UseUser } from "../hooks/useContext/UserContext";
 import Payment from "../components/PaymentTwo/Payment";
+import DropInAnimation from "../components/heroAnimation/SecTry";
 
 export const HomePage = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,13 +28,13 @@ export const HomePage = () => {
       <HomeHero />
       <hr className="my-6 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
 
-      <div className="flex flex-col gap-12">
-        <div className="text-center text-2xl font-semibold">
+      <div className="flex flex-col lg:gap-12 md:gap-4 sm:gap-4 gap-2 ">
+        <div className="text-center text-2xl font-semibold lg:scale-100 scale-75  sm:scale-90">
           Recently Lost and Found{" "}
         </div>
           <AutoplaySwiper />
         {user ? (
-          <div className="text-center text-[0.85rem]">
+          <div className="text-center text-[0.85rem] lg:scale-100 scale-75  sm:scale-90" >
             <Link
               to="/feedpage"
               className="text-[#E83434] hover:text-[#E8343485] justify-self-center place-items-center font-light underline decoration-solid "
@@ -44,7 +45,7 @@ export const HomePage = () => {
             <span className="text-[#18e074]">Link </span>!{" "}
           </div>
         ) : (
-          <div className="text-center text-[0.85rem]">
+          <div className="text-center text-[0.85rem] lg:scale-100 scale-75  sm:scale-90">
             <Link
               to="/signup"
               className="text-[#E83434] hover:text-[#E8343485] justify-self-center place-items-center font-light underline decoration-solid "
@@ -111,7 +112,7 @@ export const HomePage = () => {
         {" "}
         Case Story
       </div>
-      <CaseStory />
+      {/* <CaseStory /> */}
       <Link to="/contactus">
         <div className="pb-12  text-center">
           <span className=" font-semibold text-[#18e074] hover:text-[#18e07485]">

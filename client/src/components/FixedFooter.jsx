@@ -90,7 +90,7 @@ export const FixedFooter = (isOpen, onRequestClose) => {
       <div
         className={`${
           showFooter ? "fixed" : ""
-        } bottom-8 scale-75 lg:scale-100 md:scale-75  sm:scale-75 z-[1000] lg:left-[28rem] md:left-[16rem] sm:left-[14rem] left-[4rem] mt-20 flex flex-row items-center justify-center gap-8 mr-16`}
+        }  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2  scale-[0.4] lg:scale-100 md:scale-75  sm:scale-75 z-[1000]  mt-20 flex flex-row items-center justify-center gap-8 mr-16`}
       >
         <button
           className={`w-[3rem] h-[3rem] rounded-[0.55rem] bg-[#222222] flex justify-center items-center scroll-to-top-button ${
@@ -116,7 +116,7 @@ export const FixedFooter = (isOpen, onRequestClose) => {
             <div
               className={`${
                 showFooter ? "absolute" : ""
-              }  bottom-[3.6rem] lg:left-20 lg:scale-100 sm:scale-90 md:scale-90 scale-90  h-[11.5rem] bg-[#4E4E4E] w-[30rem] rounded-t-[0.55rem] text-[#fff] text-center text-[0.75rem]`}
+              } absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2  scale-75 lg:scale-100 md:scale-75  sm:scale-75  h-[11.5rem] bg-[#4E4E4E] w-[30rem] rounded-t-[0.55rem] text-[#fff] text-center text-[0.75rem]`}
             >
               {/* Add your list items here */}
               <div className=" flex flex-row p-4 text-start w-[29rem] bg-[#2c2c2c] rounded-[0.55rem] m-2 text-light">

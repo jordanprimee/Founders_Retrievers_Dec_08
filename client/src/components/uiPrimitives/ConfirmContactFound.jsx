@@ -167,9 +167,9 @@ export const ConfirmContactFound = ({ isOpen, onRequestClose }) => {
         isOpen={isOpen}
         style={modalStyle}
         onRequestClose={onRequestClose}
-        className="m-auto flex flex-col align-center mt-40 justify-center gap-8 p-20 bg-[#373737] rounded-[1rem] w-[44rem] h-[30rem] "
+        className="m-auto flex flex-col align-center mt-40 justify-center gap-8 p-20 bg-[#373737] rounded-[1rem] w-[44rem] h-[34rem] absolute  bottom-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
       >
-        <button onClick={onRequestClose} className="flex justify-end">
+        <button onClick={onRequestClose} className="flex justify-end pt-12">
           <Cancel />
         </button>
         <div className="self-center">
@@ -239,7 +239,7 @@ export const ConfirmContactFound = ({ isOpen, onRequestClose }) => {
              +962 70 0000 0000 <Copy />{" "} */}
           <button
             type="submit"
-            className="mt-8 self-center text-center w-52 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="mt-8 mb-12 self-center text-center w-52 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]"
             // onClick={openDeliveryAlert}
           >
             Submit Contact Form
