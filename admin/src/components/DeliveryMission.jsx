@@ -54,7 +54,7 @@ export const DeliveryMission = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setCurrentPage(1); // Reset page when performing a new search
-    fetchContactData();
+    fetchDeliveryData();
   };
 
   return (

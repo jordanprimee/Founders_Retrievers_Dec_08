@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SingUpForm from "./SignUpForm";
 
 export const UsersTable = () => {
   const [userData, setUserData] = useState([]);
@@ -61,10 +62,22 @@ export const UsersTable = () => {
   //     });
   // };
  
-
+const [modalIsOpen, setModalIsOpen] = useState(false);
+const openModal = () => {
+  setModalIsOpen(true);
+}
+const closeModal = () => {
+  setModalIsOpen(false);
+}
   return (
     <>
       {/* SEARCH  */}
+      {modalIsOpen && (
+        <SingUpForm
+          isOpen={openModal}
+          onRequestClose={closeModal}
+        />
+      )}
       <div>
         <form onSubmit={handleSearchSubmit} class="pt-2 relative self-end	mr-8">
           <input
@@ -100,10 +113,10 @@ export const UsersTable = () => {
         <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
           Users{" "}
         </div>
-        <div class="text-center mb-4 mt-12 ml-8 p-2 h-8 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] ">
+        <button onClick={openModal} class="text-center mb-4 mt-12 ml-8 p-2 h-8 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] ">
           {" "}
           Add User
-        </div>
+        </button>
       </div>
       <div class="flex flex-col w-auto ">
         <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">

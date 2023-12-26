@@ -61,7 +61,7 @@ export const PartnersTable = () => {
     axios
       .put(`http://localhost:3000/partners/${partners_id}`)
       .then(() => {
-        console.log('Server response after deletion:', response);
+        // console.log('Server response after deletion:', response);
 
     
         setPartnersData((prevPartnersData) =>

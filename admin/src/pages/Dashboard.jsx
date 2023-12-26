@@ -9,10 +9,15 @@ import { PartnersTable } from "../components/PartnersTable";
 import { FoundsTable } from "../components/FoundsTable";
 import { RetrievedTable } from "../components/RetrievedTable";
 import { DeliveryMission } from "../components/DeliveryMission";
+import  WhiteLogo  from "../assets/WhiteLogo.png";
 
 export const Dashboard = () => {
   return (
     <>
+      <div className="mt-2 p-16 bg-[#868686] w-[20rem] h-[10rem] rounded-r-[1.25rem] flex flex-col gap-4">
+        <img src={WhiteLogo} alt="" />
+      </div>
+    
       <div className="flex flex-row gap-4">
         <div className=""><SideBar />{" "}</div>
         <div className=" w-2/3 flex flex-col">

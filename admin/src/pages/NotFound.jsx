@@ -1,7 +1,6 @@
 import React from "react";
-import Connection from "../assets/clips/Connection.png";
-import { NotFoundFace } from "../assets/icons/NotFoundFace";
-import  NotFoundMap  from '../assets/clips/NotFoundMap.png'
+import { NotFoundFace } from "../assets/NotFoundFace";
+import  NotFoundMap  from '../assets/NotFoundMap.png'
 import { Link } from "react-router-dom";
 
 export const NotFound = () => {
@@ -14,7 +13,7 @@ export const NotFound = () => {
     <>
       <div
         //   style={BgTexture}
-        className="flex flex-col place-content-center mx-80 my-28  mb-80 "
+        className="h-screen flex flex-col place-content-center mx-80   mb-20 "
       >
         <div className="relative text-[11rem] font-bold text-end text-[#e83434]">
           404
@@ -32,12 +31,19 @@ export const NotFound = () => {
           <div className="text-start flex flex-row gap-4">
             Rest assure it is just a page that is not built  <NotFoundFace /> 
           </div>
-          <Link to="/">
+
+        <div className="relative">
+        <Link to="/" className="" >
               {" "}
               <button className="animate-bounce mt-6 px-3 pb-2 text-[#E83434] w-fit bg-transparent border border-2 border-[#E83434] hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] text-xs px-5 py-2 ">
                 Go to Home page 
               </button>
+
             </Link>
+            {/* <span class="animate-ping absolute left-2 top-6 inline-flex h-8 w-[7rem] rounded-full bg-[#E83434] opacity-75"></span> */}
+        </div>
+
+          
         </div>
        
       </div>

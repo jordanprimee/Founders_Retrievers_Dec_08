@@ -61,11 +61,11 @@ export const LostsTable = () => {
     axios
       .put(`http://localhost:3000/users/${id}`)
       .then(() => {
-        console.log("Server response after deletion:", response);
+        // console.log("Server response after deletion:", response);
 
-        setLostsData((prevLostsData) =>
-          prevLostsData.filter((losts) => user.id !== id)
-        );
+        // setLostsData((prevLostsData) =>
+        //   prevLostsData.filter((losts) => user.id !== id)
+        // );
       })
       .catch((error) => {
         console.error("Error deleting user ", error);

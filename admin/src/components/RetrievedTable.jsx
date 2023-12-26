@@ -215,7 +215,7 @@ export const RetrievedTable = () => {
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap flex gap-4">
                           <button
-                            onClick={(e) => handlePublishLost(item.id)}
+                            // onClick={(e) => handlePublishLost(item.id)}
                             className={`px-[1rem] pb-2 text-xs font-semibold rounded-[0.65rem] text-xs px-5 py-2 ${
                               lostsData.some((losts) => losts.id === item.id)
                                 ? "text-gray-500 cursor-not-allowed" // Lost item exists, non-clickable and grey color
@@ -226,7 +226,7 @@ export const RetrievedTable = () => {
                           </button>
 
                           <button
-                            onClick={(e) => handleDeleteLosts(item.id)}
+                            // onClick={(e) => handleDeleteLosts(item.id)}
                             class="px-[1.5rem] pb-2 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] text-xs px-5 py-2 "
                           >
                             Delete

@@ -27,16 +27,17 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { Cookies } from 'react-cookie';
-import axios from 'axios';
+import { Cookies } from "react-cookie";
+import axios from "axios";
 import Payment from "./components/PaymentTwo/Payment";
 import { TestPage } from "./pages/TestPage";
 
 const cookies = new Cookies();
 
 // Set the Authorization header for all requests
-axios.defaults.headers.common['Authorization'] = `Bearer ${cookies.get('token')}`;
-
+axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
+  "token"
+)}`;
 
 function App() {
   // Background style
@@ -45,12 +46,11 @@ function App() {
     backgroundSize: "cover",
   };
 
- const { user } = UseUser();
-
+  const { user } = UseUser();
 
   return (
-    <div style={BgTexture }>
-      <UserProvider  user={user}>
+    <div style={BgTexture}>
+      <UserProvider user={user}>
         <BrowserRouter>
           <ModalProvider>
             <Navbar />
@@ -60,18 +60,18 @@ function App() {
               <Route path="/signin" element={<SignIn />} />
               <Route
                 path="/profilepage"
-                element={user ? (<ProfilePage />) : (<SignIn />)}
+                element={user ? <ProfilePage /> : <SignIn />}
               />
               <Route
                 path="/feedpage"
-                element={user ? (<FeedPage />) : (<SignIn />)}
+                element={user ? <FeedPage /> : <SignIn />}
               />
               <Route path="/aboutus" element={<AboutUs />} />
               <Route path="/contactus" element={<ContactUs />} />
               <Route path="/payment" element={<Payment />} />
               <Route
                 path="/found/:id"
-                element={user ? (<MainCardFound />) : (<Navigate to="/signin" />)}
+                element={user ? <MainCardFound /> : <Navigate to="/signin" />}
               />
               <Route path="*" element={<NotFound />} />
               <Route path="/test" element={<TestPage />} />
