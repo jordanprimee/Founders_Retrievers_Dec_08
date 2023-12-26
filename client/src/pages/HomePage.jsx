@@ -26,7 +26,7 @@ export const HomePage = () => {
   return (
     <>
       <HomeHero />
-      <hr className="my-6 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <hr className="md:my-6 sm:my-4 mt-0 mb-4 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
 
       <div className="flex flex-col lg:gap-12 md:gap-4 sm:gap-4 gap-2 ">
         <div className="text-center text-2xl font-semibold lg:scale-100 scale-75  sm:scale-90">
@@ -59,7 +59,7 @@ export const HomePage = () => {
 
       <hr className="my-6 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
 
-      <div className="p-8 grid auto-rows-auto	 justify-items-center gap-8	">
+      <div className="xl:visible lg:visible md:visible sm:visible hidden p-8 md:grid lg:grid xl:grid sm:grid auto-rows-auto	 justify-items-center gap-8	">
         <div className="place-items-center text-2xl font-semibold">
           How it works ?{" "}
         </div>
@@ -80,12 +80,12 @@ export const HomePage = () => {
       <hr className="my-6 border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 lg:my-8" />
 
       <div className="">
-        <div className="place-items-center text-2xl font-semibold text-center pb-12 pt-12">
+        <div className="lg:scale-100 scale-75  sm:scale-90 place-items-center text-2xl font-semibold text-center pb-12 pt-12">
           Recently Linked{" "}
         </div>
         <CardRetrievedHome />
         {user ? (
-          <div className="text-[0.85rem] pb-12 pt-12 text-center">
+          <div className="lg:scale-100 scale-75  sm:scale-90 text-[0.85rem] pb-12 pt-12 text-center">
             <Link
               to="/feedpage"
               className="text-[#E83434] hover:text-[#E8343485] justify-self-center place-items-center font-light underline decoration-solid "
@@ -96,7 +96,7 @@ export const HomePage = () => {
             <span className="text-[#18e074]">Link </span>!{" "}
           </div>
         ) : (
-          <div className="text-[0.85rem] pb-12 pt-12 text-center">
+          <div className="lg:scale-100 scale-75  sm:scale-90 text-[0.85rem] pb-12 pt-12 text-center">
             <Link
               to="/signup"
               className="text-[#E83434] hover:text-[#E8343485] justify-self-center place-items-center font-light underline decoration-solid "
@@ -108,13 +108,13 @@ export const HomePage = () => {
         )}{" "}
       </div>
 
-      <div className="text-2xl font-semibold text-center pb-16 pt-12">
+      <div className="lg:scale-100 scale-75  sm:scale-90 text-2xl font-semibold text-center pb-16 pt-12">
         {" "}
         Case Story
       </div>
-      {/* <CaseStory /> */}
+      <CaseStory />
       <Link to="/contactus">
-        <div className="pb-12  text-center">
+        <div className="lg:scale-100 scale-75  sm:scale-90 pb-12  text-center">
           <span className=" font-semibold text-[#18e074] hover:text-[#18e07485]">
             <span className="underline">S</span>hare
           </span>{" "}
