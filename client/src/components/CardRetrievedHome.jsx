@@ -66,17 +66,29 @@ export const CardRetrievedHome = () => {
       delay: 3000, // Set the autoplay delay in milliseconds
     },
     breakpoints: {
+      300: {
+        slidesPerView: 1,
+      },
+      400: {
+        slidesPerView: 2,
+      },
       550: {
+        slidesPerView: 2,
+      },
+      600: {
         slidesPerView: 2,
       },
       825: {
         slidesPerView: 3,
       },
       1120: {
+        slidesPerView: 4,
+      },
+      1400: {
         slidesPerView: 5,
       },
       1600: {
-        slidesPerView: 10,
+        slidesPerView: 5,
       },
     },
     slidesOffsetBefore: 10,
@@ -87,13 +99,15 @@ export const CardRetrievedHome = () => {
     loop: true,
     effect: "fade",
   };
+  const defaultImageURL =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAh0lEQVR42mP4z/CfPwMDAzMDP//PAAmgsHk1Ab0AAAAASUVORK5CYII=";
   return (
     <>
       <div className="flex flex-row ">
         <Swiper {...swiperParams}>
           {Array.isArray(combinedData) &&
             combinedData.map((item, user_id) => (
-              <SwiperSlide key={item.user_id}>
+              <SwiperSlide key={item.user_id} className="lg:scale-100 scale-75 md:scale-90 sm:scale-90 ">
                 <>
                   {/* <div>{item.type}</div> */}
                   <div className="flex flex-col">
@@ -113,15 +127,15 @@ export const CardRetrievedHome = () => {
                       <div className="self-end bg-[#86868625] p-4 w-[18rem]  rounded-b-[1.25rem]  absolute bottom-0 -z-1">
                         <div className="flex flex-row gap-6  ">
                           <img
-                            src=""
+                            src={defaultImageURL}
                             alt="userpic"
                             className="bg-[#000] row-span-2 w-10 h-10 rounded-full"
                           />
                           <div className="flex flex-col">
-                            <span className="text-[#ffffff] font-light text-[0.9rem] w-44 max-w-44 overflow-hidden">
+                            <span key={item.user_id} className="text-[#ffffff] font-light text-[0.9rem] w-44 max-w-44 overflow-hidden">
                               {item.data.title}
                             </span>
-                            <span className="text-[#ffffff85] font-light text-[0.75rem] w-44 max-w-44">
+                            <span key={item.user_id} className="text-[#ffffff85] font-light text-[0.75rem] w-44 max-w-44">
                               {item.data.description}
                             </span>
                           </div>

@@ -134,22 +134,31 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
 
   const swiperParams = {
     breakpoints: {
+      300: {
+        slidesPerView: 2,
+      },
+      400: {
+        slidesPerView: 2,
+      },
       550: {
-        slidesPerView: 4,
+        slidesPerView: 3,
       },
       825: {
         slidesPerView: 3,
       },
       1120: {
+        slidesPerView: 4,
+      },
+      1400: {
         slidesPerView: 5,
       },
       1600: {
-        slidesPerView: 10,
+        slidesPerView: 7,
       },
     },
-    slidesOffsetBefore: '1rem',
-    slidesOffsetAfter: '1rem',
-    spaceBetween: '1rem',
+    slidesOffsetBefore: '10%',
+    slidesOffsetAfter: '10%',
+    spaceBetween: '10%',
     freeMode: true,
     navigation: false,
     loop: true,
@@ -166,12 +175,13 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
             style={{
               // setFlag(true),
               // hover: setFlag(false),
-              width: "10rem", 
+              width: "16rem", 
               transition: "transform linear 5s",
               transform: `translate3d(${-index * 25}%, 0, 0)`,
 
               '@media (max-width: 768px) and (min-width: 480px)': {
-                width: '16rem',
+                transform: `translate3d(${-index * 50}%, 0, 0)`,
+
               },
               '@media (max-width: 480px)': {
                 width: '1rem',
@@ -180,7 +190,7 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
             key={user_id}
           >
             {item.type === "losts" ? (
-              <div className="flex flex-col lg:scale-100 scale-75  sm:scale-90">
+              <div className="flex flex-col lg:scale-100 scale-75 md:scale-90 sm:scale-90">
                 <span className=" flex flex-row gap-x-2 pb-2 text-[#E83434] bg-none focus:outline-none text-[0.7rem] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                   <Minus /> I’VE LOST
                 </span>

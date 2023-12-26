@@ -122,15 +122,15 @@ export const Navbar = () => {
           </li>
           {user ? (
             <>
-              <li className=" mb-2 mt-6 mx-2">
+              <li className="lg:visible md:visible sm:hidden hidden mb-2 mt-6 mx-2">
                 <div className="w-[7rem] px-3 pb-2 text-transparent  bg-transparent focus:outline-none   px-5 py-2 rounded-[0.65rem] text-xs font-semibold"></div>
               </li>
 
               <button
                 onClick={toggleList}
-                className={`mr-12 relative ${
+                className={`lg:scale-100 md:scale-75 sm:scale-75 scale-50 lg:mr-12 mr-0 relative ${
                   isListOpen
-                    ? "border border-spacing-8 dotted border-[#18E074] rounded-full p-2"
+                    ? "relative border border-spacing-8 dotted border-[#18E074] rounded-full p-2"
                     : ""
                 }`}
               >
@@ -138,7 +138,7 @@ export const Navbar = () => {
               </button>
 
               {isListOpen && (
-                <ul className="z-60 absolute pt-6 top-24 right-36 bg-[#333333] w-[10rem] rounded-[1rem] p-4">
+                <ul className="lg:scale-100 md:scale-75 sm:scale-75 scale-50 absolute pt-6 sm:top-[9%] sm:right-[10%] md:top lg:top-[15%] lg:right-[7%] -right-0 top-[%] bg-[#333333] w-[10rem] rounded-[1rem] p-4">
                   <li>
                     <Link
                       to="/profilepage"

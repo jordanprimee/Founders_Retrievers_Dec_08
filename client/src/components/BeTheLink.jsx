@@ -11,9 +11,10 @@ export const BeTheLink = () => {
   const { user } = UseUser();
   return (
     <>
-      <div className="relative grid grid-cols-2 xl:grid-cols-[8/12_4/12] 2xl:scale-100  sm:scale-75 mt-24">
+      {/* <div className="relative xl:grid lg:grid-cols-2 md:grid md:grid-cols-2 xl:grid-cols-[8/12_4/12] 2xl:scale-100 xl:scale-95 lg:scale-95 md:scale-80 sm:flex sm:flex-col flex flex-col gap-16 sm:scale-75 scale-50 xl:mt-24 lg:mt-24 md:mt-24"> */}
+      <div className="relative grid lg:grid-cols-2 lg:grid-rows-1 md:grid-rows-0 sm:grid-rows-0   grid-cols-0   xl:grid-cols-[8/12_4/12] 2xl:scale-100 xl:scale-95 lg:scale-95 md:scale-90  gap-0 sm:scale-75  scale-75 xl:mt-24 lg:mt-24 md:mt-12 sm:mt-0 mt-0">
         <div className="col-span-1 items-start justify-self-center place-self-center flex flex-col align-center">
-          <div className="absolute left-1 top-4 w-[20rem] bg-[#86868637] p-4 rounded-[0.75rem]">
+          <div className="xl:visible lg:visible md:l:visible sm:hidden hidden absolute left-1 top-4 w-[20rem] bg-[#86868637] p-4 rounded-[0.75rem]">
             <Comment />
           </div>
           <span className="flex flex-row inline-block gap-x-2 px-[0.75rem] pb-2 text-[#18E074] bg-none  text-[0.7rem] font-semibold text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-[7rem]">
@@ -53,9 +54,9 @@ export const BeTheLink = () => {
             </>
           )}
         </div>
-        <div className="col-span-1 justify-self-end">
-          <div className="relative">
-            <div className="absolute top-[6rem]  right-[16rem] bg-[#86868690] w-[18rem] h-40 p-4 pb-4 rounded-[1.25rem]">
+        <div className="col-span-1 justify-self-end 2xl:scale-100 xl:scale-95 lg:scale-95 md:scale-100 gap-8 sm:scale-100 scale-90 ">
+          <div className="relative xl:translate-x-0 lg:translate-x-0  md:translate-x-[12%] sm:translate-x-[15%] translate-x-[10%]">
+            <div className="2xl:scale-100 xl:scale-95 lg:scale-95 md:scale-90  gap-8 sm:scale-75 scale-75 absolute top-[6rem]  right-[16rem] bg-[#86868690] w-[18rem] h-40 p-4 pb-4 rounded-[1.25rem]">
               <div className="bg-[#373737] -z-[60] h-32 pt-12 p-6 pb-4 rounded-[1rem]">
                 <button className=" w-32 h-12 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-[1rem] font-[0.8rem] rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                   FOUND IT
@@ -70,11 +71,11 @@ export const BeTheLink = () => {
             <div className="absolute -top-[4rem] right-[0rem] bg-[#86868690] w-[15rem] h-40 p-4 pb-4 rounded-l-[1.25rem]">
               <div className="bg-[#373737]   h-32 pt-12 p-6 pb-4 rounded-[1rem]">
                 <button className=" w-32 h-12 text-[#FBE62E] bg-transparent border border-2 border-[#FBE62E]  focus:outline-none hover:bg-[#FBE62E] hover:text-[#FFFFFF] text-[1rem] font-[0.8rem] rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                  FOUND IT
+                  Mine
                 </button>
               </div>
             </div>
-            <div className="absolute top-[24rem] right-[14rem] col-span-1 w-[20rem] bg-[#86868637] p-4 rounded-[0.75rem]">
+            <div className="xl:visible lg:visible md:visible sm:hidden hidden  absolute top-[24rem] right-[14rem] col-span-1 w-[20rem] bg-[#86868637] p-4 rounded-[0.75rem]">
               <Comment />
             </div>
           </div>
