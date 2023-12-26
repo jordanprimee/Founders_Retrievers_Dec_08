@@ -103,7 +103,7 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
     }
   }
 
-
+/////////////////////////////////swiper start//////////////////////////////////
   const [index, setIndex] = useState(0);
   const indexRef = useRef(index);
   const delay = 2500; // Set your desired delay value in milliseconds
@@ -155,6 +155,7 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
     loop: true,
     effect: "fade",
   };
+/////////////////////////////////swiper end//////////////////////////////////
 
   return (
     <div className="max-w-screen-2xl overflow-hidden relative">

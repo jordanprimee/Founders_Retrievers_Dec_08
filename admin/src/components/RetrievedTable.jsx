@@ -59,21 +59,27 @@ export const RetrievedTable = () => {
       fetchLostData();
     };
   
+    const displayPages = 3; // Adjust the number of pages to display
 
+    const startPage = Math.max(1, currentPage - Math.floor(displayPages / 2));
+    const endPage = Math.min(totalPages, startPage + displayPages - 1);
+  
+    const pageRange = Array.from({ length: endPage - startPage + 1 }, (_, index) => index + startPage);
+  
   return (
     <>
     {/* SEARCH  */}
-    <div>
+    <div className="flex flex-row justify-between mb-4 w-auto sm:mx-0.5 lg:mx-0.5 ">
         <form onSubmit={handleSearchSubmit} class="pt-2 relative self-end	mr-8">
           <input
-            class="place-items-end w-[20rem] placeholder-[#868686] border border-[#868686] bg-[#86868610] h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+            class="place-items-end w-11/12 placeholder-[#868686] border border-[#868686] bg-[#86868610] h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
             type="search"
             name="search"
             placeholder="Search"
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+          <button type="submit" class="absolute right-0 top-0 mt-5 mr-6">
             <svg
               class="text-gray-600 h-4 w-4 fill-current"
               xmlns="http://www.w3.org/2000/svg"
@@ -94,11 +100,11 @@ export const RetrievedTable = () => {
         </form>
       </div>
       {/* SEARCH END */}
-      <div class="flex flex-col w-auto">
-        <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="flex flex-col w-full  ">
+        <div class="overflow-x-scroll min-w-full w-full sm:mx-0.5 lg:mx-0.5 ">
+          <div class="py-2 inline-block min-w-full ">
             <div class="overflow-hidden  rounded-[1rem]">
-              <table class="min-w-full">
+              <table class="min-w-full ">
                 <thead class="bg-white border-b">
                   <tr>
                     <th
@@ -241,7 +247,7 @@ export const RetrievedTable = () => {
         </div>
       </div>
         {/* PAGINATION */}
-        <div class="flex justify-center">
+        <div className="flex justify-center lg:scale-100 md:scale-90 sm:scale-75 scale-75">
         <nav aria-label="Page navigation example">
           <ul className="flex list-style-none">
             <li
@@ -249,7 +255,9 @@ export const RetrievedTable = () => {
               onClick={() => paginate(currentPage - 1)}
             >
               <a
-                className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
+                className={`page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded ${
+                  currentPage === 1 ? "text-gray-500" : "text-gray-800"
+                } hover:bg-[#373737] hover:text-[#fff] focus:shadow-none`}
                 href="#"
                 tabIndex="-1"
               >
@@ -257,23 +265,32 @@ export const RetrievedTable = () => {
               </a>
             </li>
 
-            {Array.from({ length: totalPages }, (_, index) => (
-              <li key={index} className="page-item">
+            {pageRange.map((page) => (
+              <li key={page} className="page-item">
                 <a
-                  className={`page-link relative block py-1.5 px-3 rounded border-0 outline-none transition-all duration-300 text-gray-800 focus:shadow-none ${
-                    currentPage === index + 1 ? "bg-gray-200" : ""
-                  }`}
+                  className={`page-link relative block py-1.5 px-3 rounded border-0 outline-none transition-all duration-300 ${
+                    currentPage === page
+                      ? "bg-[#37373775] text-[#fff]"
+                      : "text-gray-800"
+                  } focus:shadow-none`}
                   href="#"
-                  onClick={() => paginate(index + 1)}
+                  onClick={() => paginate(page)}
                 >
-                  {index + 1}
+                  {page}
                 </a>
               </li>
             ))}
 
-            <li className="page-item" onClick={() => paginate(currentPage + 1)}>
+            <li
+              className={`page-item ${
+                currentPage === totalPages ? "disabled" : ""
+              }`}
+              onClick={() => paginate(currentPage + 1)}
+            >
               <a
-                className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                className={`page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded ${
+                  currentPage === totalPages ? "text-gray-500" : "text-gray-800"
+                } hover:bg-[#373737] hover:text-[#fff] focus:shadow-none`}
                 href="#"
               >
                 Next
