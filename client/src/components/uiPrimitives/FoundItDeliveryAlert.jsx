@@ -8,23 +8,18 @@ import {
 } from "../../assets/icons/IconsSVGConst";
 
 import Modal from "react-modal";
-import { useModal } from "../../hooks/useContext/ModalContext";
-import { FailedToUpload } from "../responseModals/FailedToUpload";
-import { SuccessPublishFound } from "../responseModals/SuccessPublishFound";
+import { SuccessfullyUpdated } from "../responseModals/SuccessfullyUpdated";
 
 Modal.setAppElement(document.getElementById("root"));
 
-export const DeliveryAlertLost = ({ isOpen, onRequestClose }) => {
+export const FoundItDeliveryAlert = ({ isOpen, onRequestClose }) => {
   const [successfullyUploadedIsOpen, setSuccessfullyUploadedIsOpen] =
     useState(false);
-  const [failedToUploadIsOpen, setFailedToUploadIsOpen] = useState(false);
 
   const openSuccessfullyUploaded = () => {
     setSuccessfullyUploadedIsOpen(true);
   };
-  const openFailedToUpload = () => {
-    setFailedToUploadIsOpen(true);
-  };
+
   const closeModal = () => {
     setSuccessfullyUploadedIsOpen(false);
   };
@@ -32,23 +27,18 @@ export const DeliveryAlertLost = ({ isOpen, onRequestClose }) => {
   const modalStyle = {
     overlay: {
       backgroundColor: "#ffffff10", // Set the overlay background color with transparency
-      zIndex: 6002, // Set the z-index for the overlay
+      zIndex: 6007, // Set the z-index for the overlay
     },
   };
   return (
     <>
       {successfullyUploadedIsOpen && (
-        <SuccessPublishFound
+        <SuccessfullyUpdated
           isOpen={openSuccessfullyUploaded}
           onRequestClose={closeModal}
         />
       )}
-      {failedToUploadIsOpen && (
-        <FailedToUpload
-          isOpen={openFailedToUpload}
-          onRequestClose={closeModal}
-        />
-      )}
+
       <Modal
         isOpen={isOpen}
         style={modalStyle}
@@ -64,18 +54,11 @@ export const DeliveryAlertLost = ({ isOpen, onRequestClose }) => {
         </div>
         <div className="text-[1rem] font-light text-[#fff] text-wrap text-center">
           {" "}
-          Kindly note that when your item is found; our delivery firm will
-          contact you to get your lost belonging back and you will pay 5 JD fee
-          to get recieve it. <span className="block text-[#ffffff95]"></span>{" "}
+          Kindly note that in the next 72hrs, our delivery firm will contact you
+          to get the belonging you found.{" "}
+          <span className="block text-[#ffffff95]"></span>{" "}
         </div>
 
-        <button
-          type="submit"
-          className="mt-8 self-center text-center w-48 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737]  rounded-lg text-[1rem] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          onClick={openSuccessfullyUploaded}
-        >
-          Confirm Delivery
-        </button>
         <div className="self-center col-span-3 text-[0.85rem] mb-1 justify-self-center place-items-center text-[#CDCDCD85]">
           Contact the delivery company{" "}
           <Link

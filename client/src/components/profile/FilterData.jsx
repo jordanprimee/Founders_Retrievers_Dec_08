@@ -246,8 +246,15 @@ export const FilterData = () => {
                     <LostCard
                       key={item.data.id}
                       title={item.data.title}
-                      city={item.data.city}
-                      day={item.data.day}
+                      city_lost={item.data.city}
+                      date_lost={item.data.date_lost}
+                      image={item.data.image}
+                      created_at={item.data.created_at}
+                      description={item.data.description}
+                      // user_id,
+                      // username={item.data.username}
+                      // usercity={item.data.usercity}
+                      // userimage,
                     />
                   );
                 case "found":
@@ -255,8 +262,14 @@ export const FilterData = () => {
                     <FoundCard
                       key={item.data.id}
                       title={item.data.title}
-                      city={item.data.city}
-                      day={item.data.day}
+                      city_found={item.data.city}
+                      date_found={item.data.date_found}
+                      image={item.data.image}
+                      created_at={item.data.created_at}
+                      description={item.data.description}
+                      // username={item.data.username}
+                      // usercity={item.data.usercity}
+                      // userimage,
                     />
                   );
                 case "retrieve":
@@ -265,6 +278,7 @@ export const FilterData = () => {
                       key={item.data.id}
                       username={item.data.title}
                       description={item.data.description}
+                      // image, userimage, uesrname, description
                     />
                   );
                 default:

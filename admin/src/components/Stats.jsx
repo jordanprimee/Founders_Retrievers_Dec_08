@@ -4,21 +4,21 @@ export const Stats = () => {
   return (
     <>
     {/* <div class="bg-gray-200 h-screen w-screen"> */}
-    <div class="grid gap-4 lg:gap-8 md:grid-cols-3 p-8 mt-9">
-        <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+    <div class="grid gap-4 lg:gap-8 md:grid-cols-3 lg:p-8 md:p-8 sm:p-2 p-2 lg:mt-9 md:mt-9 sm:m-0 m-0  lg:scale-100 md:scale-100 sm:scale-75 scale-75">
+        <div class="relative p-6 rounded-2xl bg-[#b0b0b050]  shadow shadow-[#49494980] dark:bg-gray-800">
             <div class="space-y-2">
                 <div
-                    class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-200">
-                    <span>Revenue</span>
+                    class="flex items-center text-[#373737] space-x-2 rtl:space-x-reverse text-sm font-medium  dark:text-gray-200">
+                    <span>Linked belongings</span>
                 </div>
 
-                <div class="text-3xl">
-                    $192.1k
+                <div class="text-3xl font-semibold text-[#373737]">
+                    {"length"}
                 </div>
 
                 <div class="flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-green-600">
 
-                    <span>32k increase</span>
+                    <span>{"persent"} increase</span>
 
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                         aria-hidden="true">
@@ -30,15 +30,15 @@ export const Stats = () => {
             </div>
         </div>
 
-        <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+        <div class="relative p-6 rounded-2xl bg-[#b0b0b050]  shadow shadow-[#49494980] dark:bg-gray-800">
             <div class="space-y-2">
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-200">
-                    <span>New customers</span>
+                    <span>Lost belongings</span>
                 </div>
 
-                <div class="text-3xl">
-                    1340
+                <div class="text-3xl font-semibold text-[#373737]">
+                    {"length"}
                 </div>
 
                 <div class="flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-red-600">
@@ -56,16 +56,16 @@ export const Stats = () => {
 
         </div>
 
-        <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+        <div class="relative p-6 rounded-2xl bg-[#b0b0b050]  shadow shadow-[#49494980] dark:bg-gray-800">
             <div class="space-y-2">
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-200">
 
-                    <span>New orders</span>
+                    <span>Found belongings</span>
                 </div>
 
-                <div class="text-3xl">
-                    3543
+                <div class="text-3xl font-semibold text-[#373737]">
+                    {"length"}
                 </div>
 
                 <div class="flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-green-600">

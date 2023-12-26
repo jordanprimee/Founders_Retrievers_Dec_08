@@ -9,16 +9,23 @@ import { PartnersTable } from "../components/PartnersTable";
 import { FoundsTable } from "../components/FoundsTable";
 import { RetrievedTable } from "../components/RetrievedTable";
 import { DeliveryMission } from "../components/DeliveryMission";
+import WhiteLogo from "../assets/WhiteLogo.png";
 
 export const Dashboard = () => {
   return (
     <>
-      <div className="flex flex-row gap-4">
-        <div className=""><SideBar />{" "}</div>
-        <div className=" w-2/3 flex flex-col">
+      <div className="mt-2 p-16 bg-[#868686] w-[20rem] h-[10rem] rounded-r-[1.25rem] flex flex-col gap-4">
+        <img src={WhiteLogo} alt="" />
+      </div>
+
+      <div className="flex flex-row gap-6">
+        <div className="  ">
+          <SideBar />{" "}
+        </div>
+        <div className="justify-center w-2/3 flex flex-col">
           <Stats />
-           {/* SEARCH  */}
-           {/* <div class="pt-2 relative self-end	mr-8">
+          {/* SEARCH  */}
+          {/* <div class="pt-2 relative self-end	mr-8">
             <input
               class="place-items-end w-[20rem] placeholder-[#868686] border border-[#868686] bg-[#86868610] h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
               type="search"
@@ -45,32 +52,50 @@ export const Dashboard = () => {
             </button>
           </div>{" "} */}
           {/* <Table /> */}
-        
-          <UsersTable />
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
+          <div className="text-2xl font-semibold text-start pb-4 lg:pt-12 md:pt-12 sm:pt-0 pt-0 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            Users{" "}
+          </div>
+          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            <UsersTable />
+          </div>
+          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
             Reach Out{" "}
           </div>
-          <ReachOutTable />
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
+          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            <ReachOutTable />
+          </div>
+
+          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
             Lost Belongings{" "}
           </div>
-          <LostsTable />
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
+          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            <LostsTable />{" "}
+          </div>
+
+          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
             Found Belongings{" "}
           </div>
-          <FoundsTable />
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
+          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            <FoundsTable />
+          </div>
+          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
             Retrieved Belongings{" "}
           </div>
-          <RetrievedTable />
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
+          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            <RetrievedTable />
+          </div>
+          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
             Our Partners{" "}
           </div>
-          <PartnersTable />
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
+          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            <PartnersTable />
+          </div>
+          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
             Delivery Forms{" "}
           </div>
-          <DeliveryMission />
+          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+            <DeliveryMission />
+          </div>
         </div>
       </div>
     </>

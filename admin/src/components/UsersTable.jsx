@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SingUpForm from "./SignUpForm";
 
 export const UsersTable = () => {
-  const [userData, setUserData] = useState([]);
-
   // PAGINATION //
+  const [userData, setUserData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [limitData, setLimitData] = useState(1);
@@ -16,10 +16,11 @@ export const UsersTable = () => {
         `http://localhost:3000/filter/users2?page=${currentPage}&limit&search=${searchQuery}`
       );
       setUserData(usersResponse.data.users);
-      const calculatedTotalPages = Math.ceil(usersResponse.data.total / usersResponse.data.limit);
+      const calculatedTotalPages = Math.ceil(
+        usersResponse.data.total / usersResponse.data.limit
+      );
       setTotalPages(calculatedTotalPages);
       setLimitData(usersResponse.data.limit);
-      console.log(usersResponse.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -28,54 +29,61 @@ export const UsersTable = () => {
   useEffect(() => {
     fetchUserData();
   }, [currentPage, searchQuery]);
-  
-  
-  
+
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
   };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setCurrentPage(1); // Reset page when performing a new search
     fetchUserData();
   };
 
-  //////////////////////DELETE USER////////////
- // const handleDeleteUser = (user_id) => {
-  //   // Make a request to delete the user
-  //   axios
-  //     .put(`http://localhost:3000/getAllUser/${id_user}`)
-  //     .then(() => {
-  //       console.log("Server response after deletion:", response);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  //       setUserData((prevUserData) =>
-  //         prevUserData.filter((user) => user.id_user !== id_user)
-  //       );
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error deleting user ", error);
-  //     });
-  // };
- 
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+  const displayPages = 3; // Adjust the number of pages to display
+
+  const startPage = Math.max(1, currentPage - Math.floor(displayPages / 2));
+  const endPage = Math.min(totalPages, startPage + displayPages - 1);
+
+  const pageRange = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => index + startPage
+  );
 
   return (
     <>
       {/* SEARCH  */}
-      <div>
-        <form onSubmit={handleSearchSubmit} class="pt-2 relative self-end	mr-8">
+      {modalIsOpen && (
+        <SingUpForm isOpen={openModal} onRequestClose={closeModal} />
+      )}
+      <div></div>
+      {/* SEARCH END */}
+      <div className="flex flex-row justify-between mb-4 w-auto sm:mx-0.5 lg:mx-0.5 ">
+        <form onSubmit={handleSearchSubmit} class="pt-2 relative self-end	">
           <input
-            class="place-items-end w-[20rem] placeholder-[#868686] border border-[#868686] bg-[#86868610] h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+            class="place-items-end w-11/12 placeholder-[#868686] border border-[#868686] bg-[#86868610] h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
             type="search"
             name="search"
             placeholder="Search"
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+          <button type="submit" class="absolute right-0 top-0 mt-5 mr-6">
             <svg
               class="text-gray-600 h-4 w-4 fill-current"
               xmlns="http://www.w3.org/2000/svg"
@@ -94,20 +102,17 @@ export const UsersTable = () => {
             </svg>
           </button>
         </form>
-      </div>
-      {/* SEARCH END */}
-      <div className="flex flex-row justify-between">
-        <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8">
-          Users{" "}
-        </div>
-        <div class="text-center mb-4 mt-12 ml-8 p-2 h-8 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] text-xs font-semibold rounded-[0.65rem] ">
+        <button
+          onClick={openModal}
+          class="text-center mt-2 p-2 h-fit whitespace-nowrap  text-[#494949] bg-transparent border border-1 border-[#494949]  focus:outline-none hover:bg-[#494949] hover:text-[#FFFFFF] text-sm font-semibold rounded-md "
+        >
           {" "}
           Add User
-        </div>
+        </button>
       </div>
-      <div class="flex flex-col w-auto ">
-        <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
+      <div class="flex flex-col w-full  ">
+        <div class="overflow-x-scroll min-w-full w-full sm:mx-0.5 lg:mx-0.5 ">
+          <div class="py-2 inline-block min-w-full ">
             <div class="overflow-hidden  rounded-[1rem]">
               <table class="min-w-full ">
                 <thead class="bg-white border-b  ">
@@ -175,7 +180,7 @@ export const UsersTable = () => {
         </div>
       </div>
       {/* PAGINATION */}
-      <div class="flex justify-center">
+      <div className="flex justify-center lg:scale-100 md:scale-90 sm:scale-75 scale-75">
         <nav aria-label="Page navigation example">
           <ul className="flex list-style-none">
             <li
@@ -183,7 +188,9 @@ export const UsersTable = () => {
               onClick={() => paginate(currentPage - 1)}
             >
               <a
-                className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
+                className={`page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded ${
+                  currentPage === 1 ? "text-gray-500" : "text-gray-800"
+                } hover:bg-[#373737] hover:text-[#fff] focus:shadow-none`}
                 href="#"
                 tabIndex="-1"
               >
@@ -191,23 +198,32 @@ export const UsersTable = () => {
               </a>
             </li>
 
-            {Array.from({ length: totalPages }, (_, index) => (
-              <li key={index} className="page-item">
+            {pageRange.map((page) => (
+              <li key={page} className="page-item">
                 <a
-                  className={`page-link relative block py-1.5 px-3 rounded border-0 outline-none transition-all duration-300 text-gray-800 focus:shadow-none ${
-                    currentPage === index + 1 ? "bg-gray-200" : ""
-                  }`}
+                  className={`page-link relative block py-1.5 px-3 rounded border-0 outline-none transition-all duration-300 ${
+                    currentPage === page
+                      ? "bg-[#37373775] text-[#fff]"
+                      : "text-gray-800"
+                  } focus:shadow-none`}
                   href="#"
-                  onClick={() => paginate(index + 1)}
+                  onClick={() => paginate(page)}
                 >
-                  {index + 1}
+                  {page}
                 </a>
               </li>
             ))}
 
-            <li className="page-item" onClick={() => paginate(currentPage + 1)}>
+            <li
+              className={`page-item ${
+                currentPage === totalPages ? "disabled" : ""
+              }`}
+              onClick={() => paginate(currentPage + 1)}
+            >
               <a
-                className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                className={`page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded ${
+                  currentPage === totalPages ? "text-gray-500" : "text-gray-800"
+                } hover:bg-[#373737] hover:text-[#fff] focus:shadow-none`}
                 href="#"
               >
                 Next
@@ -219,5 +235,3 @@ export const UsersTable = () => {
     </>
   );
 };
-
-
