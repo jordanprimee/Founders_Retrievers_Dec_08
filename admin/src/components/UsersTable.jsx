@@ -71,9 +71,12 @@ export const UsersTable = () => {
       {modalIsOpen && (
         <SingUpForm isOpen={openModal} onRequestClose={closeModal} />
       )}
-      <div></div>
+      <div className="mx-8">
+      <div className="text-3xl text-[#373737] font-semibold text-start pb-4  sm:pt-0 pt-0 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+          All Users{" "}
+        </div>
       {/* SEARCH END */}
-      <div className="flex flex-row justify-between mb-4 w-auto sm:mx-0.5 lg:mx-0.5 ">
+      <div className="flex flex-row justify-between mb-4 w-auto sm:mx-0.5 lg:mx-0.8 ">
         <form onSubmit={handleSearchSubmit} class="pt-2 relative self-end	">
           <input
             class="place-items-end w-11/12 placeholder-[#868686] border border-[#868686] bg-[#86868610] h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
@@ -231,6 +234,7 @@ export const UsersTable = () => {
             </li>
           </ul>
         </nav>
+      </div>
       </div>
     </>
   );
