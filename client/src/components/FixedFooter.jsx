@@ -116,7 +116,7 @@ export const FixedFooter = (isOpen, onRequestClose) => {
             <div
               className={`${
                 showFooter ? "absolute" : ""
-              } absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2  scale-75 lg:scale-100 md:scale-75  sm:scale-75  h-[11.5rem] bg-[#4E4E4E] w-[30rem] rounded-t-[0.55rem] text-[#fff] text-center text-[0.75rem]`}
+              } absolute  -bottom-1/2  transform  -translate-y-1/2   translate-x-1.5  scale-75 lg:scale-100 md:scale-75  sm:scale-75  h-[11.5rem] bg-[#4E4E4E] w-[30rem] rounded-t-[0.55rem] text-[#fff] text-center text-[0.75rem]`}
             >
               {/* Add your list items here */}
               <div className=" flex flex-row p-4 text-start w-[29rem] bg-[#2c2c2c] rounded-[0.55rem] m-2 text-light">
