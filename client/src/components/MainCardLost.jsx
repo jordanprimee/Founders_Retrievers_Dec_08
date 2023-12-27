@@ -1,8 +1,8 @@
 import React from "react";
 import { Calendar, Minus, Plus, Share } from "../assets/icons/IconsSVGConst";
 import { Comment } from "./uiPrimitives/Comment";
-import { Location } from "../assets/icons/IconsSVGConst";
-import { FoundItBtn } from "./uiPrimitives/FoundItBtn";
+import { Location,  Cancel } from "../assets/icons/IconsSVGConst";
+import { FoundItBtn} from "./uiPrimitives/FoundItBtn";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -55,11 +55,13 @@ export const MainCardLost = ({
         console.error("Error fetching data: ", error);
       });
   }, []);
+  const defaultImageURL =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAh0lEQVR42mP4z/CfPwMDAzMDP//PAAmgsHk1Ab0AAAAASUVORK5CYII=";
 
   // const {title, city} = props.data;
   return (
     <Modal
-      className="absolute top-1 left-[36rem] flex flex-col"
+      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]  flex flex-col"
       style={modalStyle}
       onRequestClose={onRequestClose}
       isOpen={isOpen}
@@ -68,30 +70,42 @@ export const MainCardLost = ({
         <Minus /> I’VE LOST
       </span>
       <div className="p-8 justify-stretch grid grid-col-1 grid-flow-row  bg-[#373737] rounded-[1.25rem] w-[22rem] h-[40rem] ">
-        <div className="flex flex-col">
+      <button onClick={onRequestClose} className="flex justify-end">
+          <Cancel />
+        </button>
+        <div className="flex flex-col  max-w-[18rem] w-[18rem]">
           <div className="flex flex-row gap-4 ">
             <img
-              src=""
+              src={defaultImageURL}
               alt="userpic"
               className="bg-[#CDCDCD] row-span-2 w-10 h-10 rounded-full"
             />
             <div className="text-[#CDCDCD] font-light text-[0.9rem]">
-              {lost.title}
+              {lost.username}
               <span className="block text-[#CDCDCD85] font-light text-[0.75rem]">
                 {lost.city}
               </span>{" "}
             </div>
             <div className="pt-[0.3rem] pl-16 text-end text-[#CDCDCD] font-light text-[0.65rem]">
-              21:00 pm <span className="block">11 Nov 2023</span>
+            {lost.created_at}
+              <span className="block">
+                {/* {found.publish_day} */}
+                {/* {publishday} */}
+              </span>
             </div>
           </div>
           <hr className="w-56 content-end m-2 border-[#CDCDCD50] border-dashed  sm:mx-auto dark:border-gray-700" />
-          <span className="text-[#CDCDCD] text-start font-light text-[0.75rem]">
-            I’ve lost my wallet please HELP !!
+          <div className="text-start pt-[0.3rem] pl-8 text-[#CDCDCD] font-light text-[0.65rem]">
+            {lost.title}
+          </div>
+          <span className="text-[#CDCDCD] pl-8 text-start font-light text-[0.75rem]">
+            {lost.description}
             <span className="block text-start flex gap-2 items-center ">
-              <Location /> Amman II
-              <span className="inline-block ml-4 flex gap-2 items-center">
-                <Calendar /> 11 Nov 2023
+              <Location />
+              {lost.city} II
+              <span className="inline-block ml-4 flex gap-2 items-center ">
+                <Calendar />
+                {lost.date_found}
               </span>
             </span>
           </span>
@@ -100,8 +114,12 @@ export const MainCardLost = ({
 
         <div className="flex flex-col"></div>
 
-        <div className="mt-4 border border-1-solid rounded-[1.25rem]  w-[14rem] h-[14rem]">
-          <img src="" alt="" className="rounded-[1.25rem]" />
+        <div className="self-center justify-self-center mt-2 border border-1-solid rounded-[1.25rem] w-[16rem] h-[14rem] overflow-hidden">
+          <img
+            src={lost.imageurl || "https://convertingcolors.com/waves-9D9D9D.svg"}
+            alt=""
+            className="object-cover w-full h-full rounded-[1.25rem]"
+          />
         </div>
 
         <div className="mt-8 col-span-1 w-[16rem] h-[4rem] bg-[#86868637] p-4 rounded-[0.75rem]">

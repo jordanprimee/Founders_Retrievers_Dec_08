@@ -138,16 +138,7 @@ export const Navbar = () => {
               </button>
 
               {isListOpen && (
-                <ul className="lg:scale-100 md:scale-75 sm:scale-75 scale-50 absolute pt-6 sm:top-[9%] sm:right-[10%] md:top lg:top-[15%] lg:right-[7%] -right-0 top-[%] bg-[#333333] w-[10rem] rounded-[1rem] p-4">
-                  <li>
-                    <Link
-                      to="/profilepage"
-                      className="flex flex-row items-center text-[#ffffff] font-extralight "
-                    >
-                      <ProfileWhite />{" "}
-                      <span className="hover:border-b-[0.01rem]">Profile</span>
-                    </Link>
-                  </li>
+                <ul className="lg:scale-100 md:scale-75 sm:scale-75 scale-50 absolute pt-6 sm:top-[9%] sm:right-[10%] md:top lg:top-[15%] lg:right-[7%] -right-0 top-[%] bg-[#333333] w-[18rem] rounded-[1rem] p-4 flex flex-row gap-4 items-center justify-center">
                   <li>
                     <Link
                       to="/feedpage"
@@ -160,12 +151,22 @@ export const Navbar = () => {
                       </span>
                     </Link>
                   </li>
+                  {/* <li>
+                    <Link
+                      to="/profilepage"
+                      className="flex flex-row items-center text-[#ffffff] font-extralight "
+                    >
+                      <ProfileWhite />{" "}
+                      <span className="hover:border-b-[0.01rem]">Profile</span>
+                    </Link>
+                  </li> */}
+                  
                   <li className="">
                     <Link to="">
                       {" "}
                       <button
                         onClick={logout}
-                        className="whitespace-nowrap  mt-4 pb-2 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 "
+                        className="whitespace-nowrap   pb-2 text-[#E83434] bg-transparent border border-2 border-[#E83434]  focus:outline-none hover:bg-[#E83434] hover:text-[#FFFFFF] font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 "
                       >
                         LOG OUT{" "}
                       </button>
