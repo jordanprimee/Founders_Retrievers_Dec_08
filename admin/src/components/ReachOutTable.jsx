@@ -51,6 +51,10 @@ export const ReachOutTable = () => {
 
   return (
     <>
+    <div className="mx-8">
+        <div className="text-3xl text-[#373737] font-semibold text-start sm:pt-0 pt-0 pb-12 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
+          Inquiries Table{" "}
+        </div>
       {/* SEARCH  */}
       <div className="flex flex-row justify-between mb-4 w-auto sm:mx-0.5 lg:mx-0.5 ">
       <form onSubmit={handleSearchSubmit} class="pt-2 relative">
@@ -199,6 +203,7 @@ export const ReachOutTable = () => {
             </li>
           </ul>
         </nav>
+      </div>
       </div>
     </>
   );

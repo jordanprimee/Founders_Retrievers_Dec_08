@@ -13,7 +13,7 @@ export const Stats = () => {
                 </div>
 
                 <div class="text-3xl font-semibold text-[#373737]">
-                    {"length"}
+                    53
                 </div>
 
                 <div class="flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-green-600">
@@ -33,12 +33,12 @@ export const Stats = () => {
         <div class="relative p-6 rounded-2xl bg-[#b0b0b050]  shadow shadow-[#49494980] dark:bg-gray-800">
             <div class="space-y-2">
                 <div
-                    class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-200">
+                    class="flex items-center text-[#373737] space-x-2 rtl:space-x-reverse text-sm font-medium  dark:text-gray-200">
                     <span>Lost belongings</span>
                 </div>
 
                 <div class="text-3xl font-semibold text-[#373737]">
-                    {"length"}
+                    55
                 </div>
 
                 <div class="flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-red-600">
@@ -59,16 +59,17 @@ export const Stats = () => {
         <div class="relative p-6 rounded-2xl bg-[#b0b0b050]  shadow shadow-[#49494980] dark:bg-gray-800">
             <div class="space-y-2">
                 <div
-                    class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-200">
+                    class="flex items-center text-[#373737] space-x-2 rtl:space-x-reverse text-sm font-medium  dark:text-gray-200">
 
                     <span>Found belongings</span>
                 </div>
 
                 <div class="text-3xl font-semibold text-[#373737]">
-                    {"length"}
+                    20
                 </div>
 
-                <div class="flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-green-600">
+                <div 
+                class="flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-green-600">
 
                     <span>7% increase</span>
 

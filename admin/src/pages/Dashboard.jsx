@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Table } from "../components/Table";
 import { SideBar } from "../components/SideBar";
 import { Stats } from "../components/Stats";
@@ -10,94 +10,128 @@ import { FoundsTable } from "../components/FoundsTable";
 import { RetrievedTable } from "../components/RetrievedTable";
 import { DeliveryMission } from "../components/DeliveryMission";
 import WhiteLogo from "../assets/WhiteLogo.png";
+import { UseUser } from "../hooks/UserContext";
+
+
+// ... (imports and other code)
 
 export const Dashboard = () => {
+  const { logout } = UseUser();
+  const [selectedItem, setSelectedItem] = useState("overview");
+
+  const handleListItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  const renderTable = () => {
+    switch (selectedItem) {
+      case "overview":
+        return <div><Stats />  <UsersTable /></div>;
+      case "users":
+        return <UsersTable />;
+      case "inquiriesTable":
+        return <ReachOutTable />;
+      case "losts":
+        return <LostsTable />;
+      case "founds":
+        return <FoundsTable />;
+      case "retrieved":
+        return <RetrievedTable />;
+      case "partners":
+        return <PartnersTable />;
+      case "deliveryForms":
+        return <DeliveryMission />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
-      <div className="mt-2 p-16 bg-[#868686] w-[20rem] h-[10rem] rounded-r-[1.25rem] flex flex-col gap-4">
-        <img src={WhiteLogo} alt="" />
-      </div>
-
       <div className="flex flex-row gap-6">
-        <div className="  ">
-          <SideBar />{" "}
+        <div className=" mt-16 lg:p-16 md:p-16 sm:p-8 p-1 bg-[#373737] lg:w-[20rem] md:w[10rem] sm:w-[3rem] w-[3rem]  h-screen rounded-r-[1.25rem] flex flex-col gap-4">
+          <ul className="sticky text-lg flex flex-col text-[#fff] lg:flex md:hidden sm:hidden hidden">
+          {" "}
+          Tables
+          <hr className=" w-[12rem] border-[#868686] border-dashed  sm:mx-auto dark:border-gray-700 " />
+            <li
+              onClick={() => handleListItemClick("overview")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "overview" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              Over View
+            </li>
+            <li
+              onClick={() => handleListItemClick("users")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "users" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              Users
+            </li>
+            <li
+              onClick={() => handleListItemClick("partners")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "partners" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              Partners
+            </li>
+            <li
+              onClick={() => handleListItemClick("losts")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "losts" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              All Losts
+            </li>
+            <li
+              onClick={() => handleListItemClick("founds")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "founds" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              All Founds
+            </li>
+            <li
+              onClick={() => handleListItemClick("retrieved")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "retrieved" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              All Retrieved
+            </li>
+            <li
+              onClick={() => handleListItemClick("deliveryForms")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "deliveryForms" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              Delivery Mission
+            </li>
+            <li
+              onClick={() => handleListItemClick("inquiriesTable")}
+              className={`ml-4 mt-4 text-[#fff] font-light text-[0.9rem] hover:border-l hover:border-[#fbe62e]  hover:pl-2 hover:text-[#fbe62e] flex gap-16 items-center ${
+                selectedItem === "inquiriesTable" ? "border-dotted border-l pl-2 text-[#fbe62e]  border-[#fbe62e] " : ""
+              }`}
+            >
+              Inquiries Table
+            </li>
+          </ul>
+          <button
+            onClick={logout}
+            className="lg:flex xl:flex w-fit hover:text-[#373737] md:hidden sm:hidden hidden mt-10 px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff]  focus:outline-none hover:bg-[#fff]  text-xs font-semibold rounded-[0.65rem] text-xs px-5 py-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 whitespace-nowrap"
+          >
+            LOG OUT
+          </button>
         </div>
+
         <div className="justify-center w-2/3 flex flex-col">
-          <Stats />
-          {/* SEARCH  */}
-          {/* <div class="pt-2 relative self-end	mr-8">
-            <input
-              class="place-items-end w-[20rem] placeholder-[#868686] border border-[#868686] bg-[#86868610] h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-              type="search"
-              name="search"
-              placeholder="Search"
-            />
-            <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
-              <svg
-                class="text-gray-600 h-4 w-4 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsxlink="http://www.w3.org/1999/xlink"
-                version="1.1"
-                id="Capa_1"
-                x="0px"
-                y="0px"
-                viewBox="0 0 56.966 56.966"
-                style={{ enableBackground: "new 0 0 56.966 56.966" }}
-                xmlspace="preserve"
-                width="512px"
-                height="512px"
-              >
-                <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-              </svg>
-            </button>
-          </div>{" "} */}
-          {/* <Table /> */}
-          <div className="text-2xl font-semibold text-start pb-4 lg:pt-12 md:pt-12 sm:pt-0 pt-0 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            Users{" "}
-          </div>
-          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            <UsersTable />
-          </div>
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            Reach Out{" "}
-          </div>
-          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            <ReachOutTable />
-          </div>
-
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            Lost Belongings{" "}
-          </div>
-          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            <LostsTable />{" "}
-          </div>
-
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            Found Belongings{" "}
-          </div>
-          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            <FoundsTable />
-          </div>
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            Retrieved Belongings{" "}
-          </div>
-          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            <RetrievedTable />
-          </div>
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            Our Partners{" "}
-          </div>
-          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            <PartnersTable />
-          </div>
-          <div className="text-2xl font-semibold text-start pb-4 pt-12 pl-8  lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            Delivery Forms{" "}
-          </div>
-          <div className="ml-9 mr-5 lg:scale-100 md:scale-100 sm:scale-95 scale-95">
-            <DeliveryMission />
-          </div>
+          {renderTable()}
         </div>
       </div>
     </>
   );
 };
+
