@@ -206,13 +206,13 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
                         key={item.user_id}
                         className="text-[#CDCDCD] font-light text-[0.9rem]"
                       >
-                        {item.data.title}
+                        {item.data.username}
                       </span>
                       <span
                         key={item.user_id}
                         className="text-[#CDCDCD85] font-light text-[0.75rem]"
                       >
-                        {item.data.title}
+                        {item.data.city}
                       </span>
                     </div>
                   </div>
@@ -259,13 +259,13 @@ export const AutoplaySwiper = ({ image, publishday, city, title }) => {
                         key={item.user_id}
                         className="text-[#CDCDCD] font-light text-[0.9rem]"
                       >
-                        {item.data.title}
+                        {item.data.usename}
                       </span>
                       <span
                         key={item.user_id}
                         className="text-[#CDCDCD85] font-light text-[0.75rem]"
                       >
-                        {item.data.title}
+                        {item.data.city}
                       </span>
                     </div>
                   </div>

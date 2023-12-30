@@ -144,11 +144,13 @@ export const MainCardFound = ({
   //   if (!found) {
   //     return <div>Loading...</div>;
   //   }
+  const defaultImageURL =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAh0lEQVR42mP4z/CfPwMDAzMDP//PAAmgsHk1Ab0AAAAASUVORK5CYII=";
 
   return (
     <>
     <Modal
-      className="absolute top-1 left-[36rem] flex flex-col"
+      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:scale-100 sm:scale-75 md:scale-75 scale-[0.45]   flex flex-col"
       style={modalStyle}
       onRequestClose={onRequestClose}
       isOpen={isOpen}
@@ -161,22 +163,22 @@ export const MainCardFound = ({
           <Cancel />
         </button>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col  max-w-[18rem] w-[18rem]">
           <div className="flex flex-row gap-4 ">
             <img
-              src={""}
+              src={defaultImageURL}
               alt="userpic"
               className="bg-[#CDCDCD] row-span-2 w-10 h-10 rounded-full"
             />
             <div className="text-[#CDCDCD] font-light text-[0.9rem]">
               {/* {found.id} */}
-              {found.title}
+              {found.username}
               <span className="block text-[#CDCDCD85] font-light text-[0.75rem]">
-                {/* {found.city} */}
+                {found.city}
               </span>{" "}
             </div>
             <div className="pt-[0.3rem] pl-16 text-end text-[#CDCDCD] font-light text-[0.65rem]">
-              21:00 pm{" "}
+            {found.created_at}
               <span className="block">
                 {/* {found.publish_day} */}
                 {/* {publishday} */}
@@ -184,24 +186,30 @@ export const MainCardFound = ({
             </div>
           </div>
           <hr className="w-56 content-end m-2 border-[#CDCDCD50] border-dashed  sm:mx-auto dark:border-gray-700" />
-          <span className="text-[#CDCDCD] text-start font-light text-[0.75rem]">
-            {/* {found.description} */}
+          <div className="text-start pt-[0.3rem] pl-8 text-[#CDCDCD] font-light text-[0.65rem]">
+            {found.title}
+          </div>
+          <span className="text-[#CDCDCD] pl-8 text-start font-light text-[0.75rem]">
+            {found.description}
             <span className="block text-start flex gap-2 items-center ">
               <Location />
-              {/* {found.found_location} II */}
+              {found.city} II
               <span className="inline-block ml-4 flex gap-2 items-center ">
                 <Calendar />
-                {/* {found.day} */}
+                {found.date_found}
               </span>
             </span>
           </span>
-          <div className="pt-[0.3rem] pl-16 text-[#CDCDCD] font-light text-[0.65rem]"></div>
         </div>
 
-        <div className="flex flex-col"></div>
+        {/* <div className="flex flex-col"></div> */}
 
-        <div className="mt-4 border border-1-solid rounded-[1.25rem]  w-[14rem] h-[14rem]">
-          <img src="" alt="" className="rounded-[1.25rem]" />
+        <div className="self-center justify-self-center mt-2 border border-1-solid rounded-[1.25rem] w-[16rem] h-[14rem] overflow-hidden">
+          <img
+            src={found.imageurl || "https://convertingcolors.com/waves-9D9D9D.svg"}
+            alt=""
+            className="object-cover w-full h-full rounded-[1.25rem]"
+          />
         </div>
 
         {/* <div className="mt-8 col-span-1 w-[16rem] h-[4rem] bg-[#86868637] p-4 rounded-[0.75rem]">

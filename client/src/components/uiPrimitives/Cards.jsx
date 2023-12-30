@@ -267,3 +267,47 @@ export const RetrievedCard = ({ image, userimage, uesrname, description }) => {
     </>
   );
 };
+export const RetrievedCardHome = ({ image, userimage, uesrname, description }) => {
+  const defaultImageURL =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAh0lEQVR42mP4z/CfPwMDAzMDP//PAAmgsHk1Ab0AAAAASUVORK5CYII=";
+  return (
+    <>
+      <div className="flex flex-col">
+        <span className="flex flex-row gap-x-2 pb-2 inline-block border-[#fff]  text-[#18E074] bg-none text-[0.7rem] font-semibold rounded-[0.65rem] text-xs dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-[7rem]">
+          {" "}
+          <LinkIcon /> RETRIEVED
+        </span>
+        <div
+          className="relative flex rounded-[1.25rem] w-[20rem] h-[36rem] "
+          style={{
+            backgroundImage: `url(${
+              image || "https://www.colorhexa.com/9d9d9f.png"
+            }
+          )`,
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="absolute inset-0 rounded-[1.25rem] w-[20rem] h-[36rem] bg-[#00000075]"></div>
+
+          <div className="self-end bg-[#86868625] p-4 w-[18rem]  rounded-b-[1.25rem]  absolute bottom-0 -z-1">
+            <div className="flex flex-row gap-6  ">
+              <img
+                src={userimage || defaultImageURL}
+                alt="userpic"
+                className="cover bg-[#000] row-span-2 w-10 h-10 rounded-full"
+              />
+              <div className="flex flex-col">
+                <span className="text-[#ffffff] font-light text-[0.9rem] w-44 max-w-44 overflow-hidden">
+                  {uesrname}
+                </span>
+                <span className="text-[#ffffff85] font-light text-[0.75rem] w-44 max-w-44">
+                  {description}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};

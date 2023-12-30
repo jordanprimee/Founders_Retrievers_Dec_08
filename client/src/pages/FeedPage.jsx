@@ -5,6 +5,7 @@ import {
   FoundCard,
   LostCard,
   RetrievedCard,
+  RetrievedCardHome,
 } from "../components/uiPrimitives/Cards";
 import Pagination from "../components/profile/Pagination";
 import { UseUser } from "../hooks/useContext/UserContext";
@@ -384,7 +385,7 @@ export const FeedPage = ({ isOpen, onRequestClose }) => {
                   );
                 case "retrieve":
                   return (
-                    <RetrievedCard
+                    <RetrievedCardHome
                       key={item.data.id}
                       username={item.data.title}
                       description={item.data.description}
